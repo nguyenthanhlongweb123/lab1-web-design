@@ -3,91 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD - NGUYỄN THÀNH LONG</title>
-    <link rel="stylesheet" href="style_dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>LONG BARCA SHOP - QUẢN LÝ BÀI TẬP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --barca-blue: #004d98;
+            --barca-red: #a50044;
+            --barca-gold: #edbb00;
+            --bg-light: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            /* Gradient dọc đặc trưng của Barca */
+            background: linear-gradient(180deg, var(--barca-blue) 50%, var(--barca-red) 50%);
+            color: white;
+            padding: 40px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+        }
+
+        .profile { 
+            text-align: center; 
+            margin-bottom: 40px; 
+            border-bottom: 2px solid var(--barca-gold);
+            padding-bottom: 20px; 
+        }
+        .profile h2 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--barca-gold); }
+
+        .menu ul { list-style: none; }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .menu a:hover {
+            background: var(--barca-gold);
+            color: var(--barca-blue);
+        }
+
+        .content { flex: 1; padding: 40px; }
+        
+        .header-shop {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 10px solid var(--barca-red);
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .header-shop h1 { font-family: 'Oswald', sans-serif; color: var(--barca-blue); }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        .card:hover { transform: translateY(-10px); }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background: #eee;
+            display: flex;
+            align-items: center;            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        .card-body { padding: 20px; }
+        .card-body h3 { color: var(--barca-blue); margin-bottom: 10px; font-family: 'Oswald', sans-serif; }
+        .card-body p { font-size: 0.9rem; color: #666; margin-bottom: 20px; line-height: 1.4; }
+
+        .btn-shop {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--barca-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-shop:hover { background: var(--barca-blue); }
+
+        .doc-section { margin-top: 40px; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .doc-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .doc-table th { text-align: left; padding: 12px; background: var(--bg-light); color: var(--barca-blue); font-family: 'Oswald', sans-serif; }
+        .doc-table td { padding: 12px; border-bottom: 1px solid #eee; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .content { padding: 20px; }
+        }
+    </style>
 </head>
 <body>
 
     <aside class="sidebar">
         <div class="profile">
-            <h2>Long Nguyễn</h2>
-            <p>Module 06: Web Design</p>
+            <h2>LONG BARCA SHOP</h2>
+            <p>Football Shirt 2026 Project</p>
         </div>
         <nav class="menu">
             <ul>
-                <li><a href="https://nguyenthanhlongweb123.github.io/quan-ly-lab-web/" class="active">🏠 Dashboard</a></li>
-                <li><a href="lab 1 to 4/index.html">📂 Lab 1 - 4</a></li>
-                <li><a href="animation (1)/index.html">🎬 Animation</a></li>
-                <li><a href="lab1/index1.html">⚽ Barca Store Project</a></li>
+                <li><a href="index.html">🏠 Home Shop</a></li>
+                <li><a href="animation (1)/lab1/index1.html">👕 Categories Jerseys</a></li>
+                <li><a href="lab 1 to 4/index.html">📂 Lab Exercises 1-4</a></li>
+                <li><a href="animation (1)/index.html">🎬 Web Effects</a></li>
             </ul>
         </nav>
     </aside>
 
     <main class="content">
-        <header class="main-header">
-            <h1>Hệ thống Quản lý Bài tập</h1>
-            <div class="date">Cập nhật: 14/01/2026</div>
+        <header class="header-shop">
+            <h1>Hệ thống quản lý Shop & Lab</h1>
+            <div style="font-weight: bold; color: var(--barca-red);">M06 - Web Design</div>
         </header>
 
         <section class="dashboard-grid">
             <div class="card">
-                <span class="badge">Hoàn thành</span>
-                <h3>Lab 1 to 4</h3>
-                <p>Tổng hợp kiến thức về HTML5, thẻ định dạng văn bản và cấu trúc Layout CSS cơ bản.</p>
-                <a href="lab 1 to 4/index.html" class="btn">Mở bài tập</a>
+                <div class="card-img">👕</div>
+                <div class="card-body">
+                    <h3>Home Kit 2025/26</h3>
+                    <p>Thiết kế áo đấu sân nhà với sọc xanh đỏ truyền thống. Bài tập về Layout sản phẩm chuyên nghiệp.</p>
+                    <a href="animation (1)/lab1/index1.html" class="btn-shop">Xem dự án</a>
+                </div>
             </div>
 
             <div class="card">
-                <span class="badge">Hoàn thành</span>
-                <h3>Animation (1)</h3>
-                <p>Thực hành các hiệu ứng chuyển động nâng cao với Keyframes và Transition trong CSS.</p>
-                <a href="animation (1)/index.html" class="btn">Xem kết quả</a>
+                <div class="card-img">📂</div>
+                <div class="card-body">
+                    <h3>Kho lưu trữ Lab 1-4</h3>
+                    <p>Tổng hợp các bài tập cơ bản về HTML/CSS đã thực hiện: Định dạng văn bản, Table, Layout cơ bản.</p>
+                    <a href="lab 1 to 4/index.html" class="btn-shop">Mở thư mục</a>
+                </div>
             </div>
 
-            <div class="card highlight">
-                <span class="badge yellow">Dự án chính</span>
-                <h3>Barca Store</h3>
-                <p>Website thương mại điện tử chuyên nghiệp dành cho người hâm mộ FC Barcelona.</p>
-                <a href="lab1/index1.html" class="btn btn-gold">Xem dự án</a>
+            <div class="card" style="border-bottom: 5px solid var(--barca-gold);">
+                <div class="card-img">✨</div>
+                <div class="card-body">
+                    <h3>Web Effects</h3>
+                    <p>Các hiệu ứng chuyển động mượt mà sử dụng Transition và Keyframes cho website bán áo đấu.</p>
+                    <a href="animation (1)/index.html" class="btn-shop">Xem hiệu ứng</a>
+                </div>
             </div>
         </section>
 
-        <section class="file-list-section">
-            <h2>Tài liệu đi kèm (.docx)</h2>
-            <div class="file-table-wrapper">
-                <table class="file-table">
-                    <thead>
-                        <tr>
-                            <th>Tên File</th>
-                            <th>Định dạng</th>
-                            <th>Dung lượng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>📄 Bài kiểm tra cuối kì 1 môn lịch sử.docx</td>
-                            <td>Word</td>
-                            <td>22 KB</td>
-                        </tr>
-                        <tr>
-                            <td>📄 Bài thuyết trình trung thu.docx</td>
-                            <td>Word</td>
-                            <td>16 KB</td>
-                        </tr>
-                        <tr>
-                            <td>📄 lop9_giai_chi_tiet_phan2.docx</td>
-                            <td>Word</td>
-                            <td>30 KB</td>
-                        </tr>
-                        <tr>
-                            <td>📄 nd_thuyet_trinh_full.docx</td>
-                            <td>Word</td>
-                            <td>195 KB</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <section class="doc-section">
+            <h2 style="font-family: 'Oswald', sans-serif; color: var(--barca-blue); margin-bottom: 10px;">Shop Document Management</h2>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>📄 Plans to sell Barca shirts.docx</td><td><span style="color: #28a745; font-weight: bold;">✔ Ready</span></td></tr>
+                    <tr><td>📄 Lab1.docx Warehouse List</td><td><span style="color: #28a745; font-weight: bold;">✔ Ready</span></td></tr>
+                    <tr><td>📄 Presentation content Barca.docx</td><td><span style="color: #fd7e14; font-weight: bold;">⌛ Waiting</span></td></tr>
+                </tbody>
+            </table>
         </section>
     </main>
 
