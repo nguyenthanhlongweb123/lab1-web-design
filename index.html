@@ -1,52 +1,95 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quản lý bài Lab</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #eef2f7;
-      margin: 0;
-      padding: 40px;
-    }
-    h1 {
-      text-align: center;
-    }
-    .lab-list {
-      max-width: 600px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 20px 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin: 12px 0;
-    }
-    a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: 500;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD - NGUYỄN THÀNH LONG</title>
+    <link rel="stylesheet" href="style_dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>📁 Trang quản lý các bài Lab</h1>
 
-  <div class="lab-list">
-    <ul>
-      <li>🔹 <a href="lab1/index1.html">Lab 1 - HTML cơ bản</a></li>
-      
-    </ul>
-  </div>
+    <aside class="sidebar">
+        <div class="profile">
+            <h2>Long Nguyễn</h2>
+            <p>Module 06: Web Design</p>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://nguyenthanhlongweb123.github.io/quan-ly-lab-web/" class="active">🏠 Dashboard</a></li>
+                <li><a href="lab 1 to 4/index.html">📂 Lab 1 - 4</a></li>
+                <li><a href="animation (1)/index.html">🎬 Animation</a></li>
+                <li><a href="lab1/index1.html">⚽ Barca Store Project</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="main-header">
+            <h1>Hệ thống Quản lý Bài tập</h1>
+            <div class="date">Cập nhật: 14/01/2026</div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="card">
+                <span class="badge">Hoàn thành</span>
+                <h3>Lab 1 to 4</h3>
+                <p>Tổng hợp kiến thức về HTML5, thẻ định dạng văn bản và cấu trúc Layout CSS cơ bản.</p>
+                <a href="lab 1 to 4/index.html" class="btn">Mở bài tập</a>
+            </div>
+
+            <div class="card">
+                <span class="badge">Hoàn thành</span>
+                <h3>Animation (1)</h3>
+                <p>Thực hành các hiệu ứng chuyển động nâng cao với Keyframes và Transition trong CSS.</p>
+                <a href="animation (1)/index.html" class="btn">Xem kết quả</a>
+            </div>
+
+            <div class="card highlight">
+                <span class="badge yellow">Dự án chính</span>
+                <h3>Barca Store</h3>
+                <p>Website thương mại điện tử chuyên nghiệp dành cho người hâm mộ FC Barcelona.</p>
+                <a href="lab1/index1.html" class="btn btn-gold">Xem dự án</a>
+            </div>
+        </section>
+
+        <section class="file-list-section">
+            <h2>Tài liệu đi kèm (.docx)</h2>
+            <div class="file-table-wrapper">
+                <table class="file-table">
+                    <thead>
+                        <tr>
+                            <th>Tên File</th>
+                            <th>Định dạng</th>
+                            <th>Dung lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📄 Bài kiểm tra cuối kì 1 môn lịch sử.docx</td>
+                            <td>Word</td>
+                            <td>22 KB</td>
+                        </tr>
+                        <tr>
+                            <td>📄 Bài thuyết trình trung thu.docx</td>
+                            <td>Word</td>
+                            <td>16 KB</td>
+                        </tr>
+                        <tr>
+                            <td>📄 lop9_giai_chi_tiet_phan2.docx</td>
+                            <td>Word</td>
+                            <td>30 KB</td>
+                        </tr>
+                        <tr>
+                            <td>📄 nd_thuyet_trinh_full.docx</td>
+                            <td>Word</td>
+                            <td>195 KB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
 </body>
 </html>
