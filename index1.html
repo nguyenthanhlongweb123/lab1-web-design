@@ -3,111 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FC BARCELONA - MÉS QUE UN CLUB</title>
+    <title>FC Barcelona Store - Premium Edition</title>
     <style>
         :root {
-            --primary: #a50044; /* Đỏ Barca */
-            --secondary: #004d98; /* Xanh Barca */
-            --gold: #edbb00; /* Vàng Gold */
-            --bg: #0a0a12; 
-            --glass: rgba(255, 255, 255, 0.05);
-            --text: #ffffff;
+            --primary: #a50044; --secondary: #004d98; --gold: #edbb00;
+            --bg: #ffffff; --text: #1a1a1a; --card-bg: #ffffff;
+            --input-bg: #f8f9fa; --footer-bg: #0b0b0b;
+        }
+        body.dark-mode {
+            --bg: #121212; --text: #f4f4f4; --card-bg: #1e1e1e;
+            --input-bg: #2d2d2d; --footer-bg: #000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Poppins', 'Segoe UI', sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; line-height: 1.6; overflow-x: hidden; }
 
-        /* --- CUSTOME CURSOR --- */
-        #cursor-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; }
-        #cursor-outline { width: 40px; height: 40px; border: 2px solid var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.15s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        /* --- UI: CURSOR & PROGRESS --- */
+        #cursor-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; }
+        #cursor-outline { width: 35px; height: 35px; border: 2px solid var(--secondary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; }
+        #progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--gold); z-index: 10001; width: 0%; }
 
-        /* --- PROGRESS BAR --- */
-        #progress { position: fixed; top: 0; left: 0; height: 5px; background: linear-gradient(to right, var(--primary), var(--gold), var(--secondary)); z-index: 10001; width: 0%; }
-
-        /* --- HEADER & NAVIGATION --- */
+        /* --- HEADER & MARQUEE --- */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px; 
-            background: rgba(10, 10, 18, 0.8); backdrop-filter: blur(15px);
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 0 8%; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed; top: 0; width: 100%; height: 70px; background: var(--bg);
+            display: flex; justify-content: space-between; align-items: center; padding: 0 8%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        nav a { text-decoration: none; color: #fff; font-weight: 600; margin-left: 25px; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; text-transform: uppercase; }
-        nav a:hover { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+        nav a { text-decoration: none; color: var(--text); font-weight: 700; margin-left: 20px; font-size: 0.85rem; transition: 0.3s; }
+        nav a:hover { color: var(--primary); }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: radial-gradient(circle at center, var(--secondary) 0%, var(--bg) 70%);
-            text-align: center; padding: 0 5%;
-        }
-        .hero h1 { font-size: 5rem; font-weight: 900; background: linear-gradient(to bottom, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 20px; }
-        .hero p { font-size: 1.5rem; color: var(--gold); font-weight: 300; letter-spacing: 5px; }
-
-        .marquee { background: var(--primary); padding: 15px 0; overflow: hidden; white-space: nowrap; border-y: 2px solid var(--gold); }
-        .marquee-content { display: inline-block; animation: scroll 30s linear infinite; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .marquee { margin-top: 70px; background: var(--primary); color: white; padding: 10px 0; overflow: hidden; white-space: nowrap; font-weight: bold; font-size: 0.85rem; }
+        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
         @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        section { padding: 100px 10%; position: relative; }
-        .section-title { font-size: 3rem; margin-bottom: 50px; text-align: center; color: var(--gold); text-transform: uppercase; }
+        section { padding: 60px 8%; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; color: var(--primary); font-weight: 900; }
 
-        /* --- GIỚI THIỆU CHI TIẾT --- */
-        .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .about-text h3 { color: var(--primary); font-size: 2rem; margin-bottom: 20px; }
-        .about-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-        .stat-item { text-align: center; padding: 20px; background: rgba(0, 77, 152, 0.3); border-radius: 15px; border-bottom: 3px solid var(--gold); }
-        .stat-item h4 { font-size: 2rem; color: var(--gold); }
+        /* --- THỐNG KÊ (STATS) --- */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; margin-bottom: 40px; }
+        .stat-card { padding: 30px; background: var(--secondary); color: white; border-radius: 20px; }
+        .stat-card h2 { font-size: 3rem; color: var(--gold); }
 
-        /* --- SẢN PHẨM RỰC RỠ --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { 
-            background: var(--glass); padding: 25px; border-radius: 30px; text-align: center;
-            transition: 0.5s; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;
+        /* --- PRODUCT GRID --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 25px; text-align: center; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+
+        /* --- TIN TỨC (NEWS - TỰ TẠO ẢNH CSS) --- */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .news-item { background: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .news-img-css { 
+            height: 180px; width: 100%; 
+            background: linear-gradient(135deg, var(--primary) 25%, var(--secondary) 25%, var(--secondary) 50%, var(--primary) 50%, var(--primary) 75%, var(--secondary) 75%);
+            background-size: 40px 40px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;
         }
-        .card:hover { transform: translateY(-15px); background: rgba(255,255,255,0.1); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .card img { width: 100%; border-radius: 20px; margin-bottom: 20px; transition: 0.5s; }
-        .card:hover img { transform: scale(1.05); }
+        .news-body { padding: 20px; }
+        .news-body h4 { margin-bottom: 10px; color: var(--primary); }
 
-        /* --- FORM LIÊN HỆ & ĐĂNG KÝ --- */
-        .contact-wrapper {
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px;
-            background: var(--glass); border-radius: 40px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+        /* --- FORM ĐĂNG KÝ --- */
+        .registration-container {
+            display: grid; grid-template-columns: 1fr 1fr; background: var(--card-bg);
+            border-radius: 30px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(128,128,128,0.1);
         }
-        .contact-info { background: linear-gradient(135deg, var(--secondary), var(--primary)); padding: 60px; }
-        .contact-form { padding: 60px; background: rgba(255,255,255,0.02); }
-        
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 500; color: var(--gold); }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px; color: #fff; font-size: 1rem; outline: none; transition: 0.3s;
-        }
-        .form-group input:focus { border-color: var(--gold); background: rgba(255,255,255,0.1); }
+        .reg-info { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        .reg-form-side { padding: 40px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.85rem; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; background: var(--input-bg); color: var(--text); }
+        .btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--gold); color: var(--primary); }
 
-        .btn-premium {
-            width: 100%; padding: 18px; background: var(--gold); color: var(--primary);
-            border: none; border-radius: 15px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 2px; cursor: pointer; transition: 0.4s;
-        }
-        .btn-premium:hover { background: #fff; transform: scale(1.02); box-shadow: 0 10px 30px var(--gold); }
+        /* --- CONTACT CARDS --- */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .info-card { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid rgba(0,0,0,0.1); }
 
-        /* --- FOOTER --- */
-        footer { padding: 80px 10% 40px; background: #05050a; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
+        .toggle-btn { position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; border-radius: 50%; background: var(--gold); border: none; z-index: 2000; font-size: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 992px) {
-            .about-container, .contact-wrapper { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3rem; }
-        }
+        @media (max-width: 992px) { .registration-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -115,141 +89,141 @@
     <div id="progress"></div>
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
+    <button class="toggle-btn" id="darkModeBtn">🌓</button>
 
     <header>
-        <div class="logo"><img src="app/assets/images/logo-barca.jpg" alt="FCB" height="50"></div>
+        <div class="logo"><img src="app/assets/images/logo-barca.jpg" alt="FCB" height="45"></div>
         <nav>
-            <a href="#about">Lịch sử</a>
-            <a href="#news">Tin tức</a>
-            <a href="#shop">Cửa hàng</a>
-            <a href="#contact">Đăng ký Culer</a>
+            <a href="#news">TIN TỨC</a>
+            <a href="#shop">SẢN PHẨM</a>
+            <a href="#register">CULER CLUB</a>
         </nav>
     </header>
 
-    <div class="hero">
-        <p class="reveal">EST. 1899</p>
-        <h1 class="reveal">FC BARCELONA</h1>
-        <div class="about-card reveal" style="margin-top: 20px;">
-            <p>"Més que un club" - Hơn cả một câu lạc bộ</p>
-        </div>
-    </div>
-
     <div class="marquee">
         <div class="marquee-content">
-            ✦ CHÀO MỪNG ĐẾN VỚI THÁNH ĐỊA CAMP NOU — GIẢM GIÁ 20% TOÀN BỘ PHỤ KIỆN — MIỄN PHÍ VẬN CHUYỂN — HỘI VIÊN PREMIUM NHẬN QUÀ TẶNG ĐỘC QUYỀN — VISCA EL BARÇA! ✦
+            ⚡ ĐĂNG KÝ THÀNH VIÊN CULER NGAY ĐỂ NHẬN VOUCHER 200K — MIỄN PHÍ VẬN CHUYỂN ĐƠN HÀNG TRÊN 2 TRIỆU ĐỒNG — VISCA EL BARÇA! ⚡
         </div>
     </div>
 
-    <section id="about">
-        <h2 class="section-title reveal">Hào Quang Bất Diệt</h2>
-        <div class="about-container">
-            <div class="about-text reveal">
-                <h3>Lịch Sử Vĩ Đại</h3>
-                <p>Được thành lập bởi Joan Gamper vào năm 1899, FC Barcelona đã trở thành biểu tượng văn hóa của Catalonia. Với triết lý bóng đá tổng lực, câu lạc bộ đã sản sinh ra những huyền thoại vĩ đại nhất lịch sử bóng đá thế giới.</p>
-                <div class="stat-grid">
-                    <div class="stat-item"><h4>27</h4><p>La Liga</p></div>
-                    <div class="stat-item"><h4>5</h4><p>Champions League</p></div>
-                    <div class="stat-item"><h4>31</h4><p>Copa del Rey</p></div>
-                    <div class="stat-item"><h4>3</h4><p>FIFA Club World Cup</p></div>
+    <section class="reveal">
+        <div class="stats-grid">
+            <div class="stat-card"><h2>27</h2><p>LA LIGA</p></div>
+            <div class="stat-card"><h2>5</h2><p>CHAMPIONS LEAGUE</p></div>
+            <div class="stat-card"><h2>31</h2><p>COPA DEL REY</p></div>
+        </div>
+    </section>
+
+    <section id="news" class="reveal">
+        <h2 class="section-title">BARÇA NEWS</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <div class="news-img-css">⚽</div>
+                <div class="news-body">
+                    <h4>Trận El Clásico sắp tới</h4>
+                    <p>Cập nhật đội hình dự kiến và tình hình chấn thương trước trận đại chiến...</p>
                 </div>
             </div>
-            <div class="about-card reveal">
-                <h3>La Masia - Lò Đào Tạo Số 1</h3>
-                <p style="margin-top: 15px;">Chúng tôi không mua những siêu sao, chúng tôi tạo ra họ. La Masia là trái tim của Barça, nơi nuôi dưỡng những tâm hồn yêu bóng đá và rèn luyện những kỹ năng đỉnh cao nhất.</p>
-                <ul style="margin-top: 20px; list-style: none;">
-                    <li style="color: var(--gold);">✔ Đào tạo hơn 500 tài năng mỗi năm</li>
-                    <li style="color: var(--gold);">✔ Nơi khởi nguồn của Messi, Xavi, Iniesta</li>
-                    <li style="color: var(--gold);">✔ Triết lý Tiki-Taka huyền thoại</li>
-                </ul>
+            <div class="news-item">
+                <div class="news-img-css" style="background: linear-gradient(45deg, var(--gold), var(--primary));">🏆</div>
+                <div class="news-body">
+                    <h4>Kỷ niệm 125 năm thành lập</h4>
+                    <p>Barcelona công bố chuỗi sự kiện đặc biệt tri ân người hâm mộ toàn cầu.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="shop" style="background: rgba(0,0,0,0.2);">
-        <h2 class="section-title reveal">Barça Official Store</h2>
+    <section id="shop">
+        <h2 class="section-title reveal">OFFICIAL STORE</h2>
         <div class="grid">
             <div class="card reveal">
                 <img src="app/assets/images/anh1.jpg" alt="Giày 1">
-                <h3 style="color: var(--gold);">Nike Phantom FCB Edition</h3>
-                <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 10px;">Thiết kế khí động học cho những pha dứt điểm hiểm hóc.</p>
-                <p style="font-size: 1.5rem; color: #fff; font-weight: 800;">1.850.000 VND</p>
-                <button class="btn-premium" style="margin-top: 20px; padding: 12px;">Mua ngay</button>
+                <h3>Nike Phantom FCB</h3>
+                <p style="color: var(--primary); font-weight: 800; margin: 10px 0;">1.850.000đ</p>
+                <button class="btn-submit" style="padding: 10px;">Thêm vào giỏ</button>
             </div>
             <div class="card reveal">
                 <img src="app/assets/images/.anh2.jpg" alt="Giày 2">
-                <h3 style="color: var(--gold);">Home Kit 2025/26 - Player</h3>
-                <p style="opacity: 0.7; font-size: 0.9rem; margin-bottom: 10px;">Công nghệ Dri-FIT ADV đỉnh cao mang lại sự thoáng mát.</p>
-                <p style="font-size: 1.5rem; color: #fff; font-weight: 800;">2.200.000 VND</p>
-                <button class="btn-premium" style="margin-top: 20px; padding: 12px;">Mua ngay</button>
+                <h3>Air Jordan Retro</h3>
+                <p style="color: var(--primary); font-weight: 800; margin: 10px 0;">2.400.000đ</p>
+                <button class="btn-submit" style="padding: 10px;">Thêm vào giỏ</button>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2 class="section-title reveal">Gia Nhập Cộng Đồng Culer</h2>
-        <div class="contact-wrapper reveal">
-            <div class="contact-info">
-                <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Premium <br>Membership</h2>
-                <p>Đăng ký thành viên chính thức để nhận thẻ hội viên cứng, tạp chí Barça hàng tháng và quyền ưu tiên mua vé tại Camp Nou.</p>
-                <div style="margin-top: 40px;">
-                    <p>📍 Camp Nou Office, Barcelona</p>
-                    <p>📞 +34 902 1899 00</p>
-                    <p>✉️ culer-support@fcb.cat</p>
-                </div>
+    <section id="register" class="reveal">
+        <div class="registration-container">
+            <div class="reg-info">
+                <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Gia Nhập <br>Đại Gia Đình Barça</h2>
+                <p>Đăng ký hội viên để nhận các đặc quyền:</p>
+                <ul style="margin-top: 20px; list-style-position: inside;">
+                    <li>Voucher giảm giá 20%</li>
+                    <li>Tin chuyển nhượng độc quyền</li>
+                    <li>Ưu đãi mua vé trận đấu</li>
+                </ul>
             </div>
-            <div class="contact-form">
-                <form onsubmit="event.preventDefault(); alert('Visca el Barça! Chúng tôi đã nhận được thông tin.')">
+            
+            <div class="reg-form-side">
+                <form onsubmit="handleFinalRegister(event)">
                     <div class="form-group">
-                        <label>Họ và Tên Hội Viên</label>
-                        <input type="text" placeholder="Nhập tên đầy đủ..." required>
+                        <label>Họ và Tên</label>
+                        <input type="text" id="fullName" placeholder="Nguyễn Văn A" required>
                     </div>
                     <div class="form-group">
-                        <label>Email Đăng Ký</label>
-                        <input type="email" placeholder="example@gmail.com" required>
+                        <label>Email Culer</label>
+                        <input type="email" id="email" placeholder="culer@barca.vn" required>
                     </div>
                     <div class="form-group">
-                        <label>Gói Hội Viên</label>
-                        <select>
-                            <option>Culer Premium (99.000đ/tháng)</option>
-                            <option>Barça Member Chính Thức (Thẻ cứng)</option>
-                            <option>Hội Viên Liên Kết Quốc Tế</option>
+                        <label>Loại thành viên</label>
+                        <select id="fanType">
+                            <option value="member">Fan chính thức (Culer)</option>
+                            <option value="premium">Fan Premium</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Lời Nhắn Cho CLB</label>
-                        <textarea rows="3" placeholder="Gửi lời chúc đến các cầu thủ..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-premium">Xác Nhận Đăng Ký</button>
+                    <button type="submit" class="btn-submit">Xác Nhận Đăng Ký</button>
                 </form>
             </div>
         </div>
+
+        <div class="contact-grid">
+            <div class="info-card"><h4>📍 TP.HCM</h4><p>Showroom Quận 1</p></div>
+            <div class="info-card"><h4>📞 Hotline</h4><p>1900 6789</p></div>
+            <div class="info-card"><h4>✉️ Support</h4><p>info@fcb.vn</p></div>
+        </div>
     </section>
 
-    <footer>
-        <img src="app/assets/images/logo-barca.jpg" alt="FCB" height="60" style="margin-bottom: 30px;">
-        <p style="letter-spacing: 5px; color: var(--gold); font-weight: 900; font-size: 1.2rem;">MÉS QUE UN CLUB</p>
-        <p style="margin-top: 20px; opacity: 0.5; font-size: 0.8rem;">Thiết kế bởi NGUYỄN THÀNH LONG | WE-MĐ06 | © 2026 FC BARCELONA VIETNAM</p>
+    <footer style="padding: 40px; background: var(--footer-bg); color: white; text-align: center;">
+        <p>MÉS QUE UN CLUB | © 2026 FCB VIETNAM OFFICIAL</p>
     </footer>
 
     <script>
-        // Custom Mouse Cursor
+        function handleFinalRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('fullName').value;
+            alert(`Cảm ơn Culer ${name}! Chào mừng bạn đến với đội bóng vĩ đại nhất thế giới.`);
+        }
+
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
+        const progress = document.getElementById('progress');
+
         window.addEventListener('mousemove', (e) => {
             dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
             outline.animate({ left: e.clientX + 'px', top: e.clientY + 'px' }, { duration: 500, fill: "forwards" });
         });
 
-        // Progress Scroll Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById('progress').style.width = (winScroll / height) * 100 + "%";
-            
-            // Scroll Reveal
+            progress.style.width = (winScroll / height) * 100 + "%";
             document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add("active");
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add("active");
             });
+        });
+
+        document.getElementById('darkModeBtn').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
         });
     </script>
 </body>
