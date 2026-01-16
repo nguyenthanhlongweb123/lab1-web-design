@@ -6,9 +6,8 @@
     <title>NGUYỄN THÀNH LONG - PORTFOLIO</title>
 
     <style>
-        /* 1. RESET & BASE STYLES */
+        /* GIỮ NGUYÊN PHẦN CSS CỦA BẠN (Đã rất đẹp rồi) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: #1a1a2e;
@@ -20,14 +19,7 @@
             padding: 50px 20px;
             overflow-x: hidden;
         }
-
-        /* 2. HEADER */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
+        header { text-align: center; margin-bottom: 60px; animation: fadeInDown 0.8s ease-out; }
         header h1 {
             font-size: 3rem;
             background: linear-gradient(to right, #00d2ff, #3a7bd5);
@@ -36,24 +28,8 @@
             letter-spacing: 4px;
             text-transform: uppercase;
         }
-
-        header p {
-            margin-top: 15px;
-            color: #94a3b8;
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
-
-        /* 3. GRID CONTAINER */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* 4. CARD STYLES */
+        header p { margin-top: 15px; color: #94a3b8; font-size: 1.2rem; font-weight: 300; }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; width: 100%; max-width: 1100px; }
         .card {
             background: #16213e;
             border: 1px solid #0f3460;
@@ -69,86 +45,18 @@
             flex-direction: column;
             justify-content: center;
         }
-
-        .card:hover {
-            transform: translateY(-15px);
-            border-color: #4ecca3;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            background: #1b264f;
-        }
-
-        /* 5. CARD VARIANTS (Lab 5 Highlight) */
+        .card:hover { transform: translateY(-15px); border-color: #4ecca3; box-shadow: 0 20px 40px rgba(0,0,0,0.6); background: #1b264f; }
         .card.featured { border-color: #a50044; }
-        .card.featured:hover { 
-            border-color: #edbb00; 
-            box-shadow: 0 15px 30px rgba(165, 0, 68, 0.4); 
-        }
+        .card.featured:hover { border-color: #edbb00; box-shadow: 0 15px 30px rgba(165, 0, 68, 0.4); }
         .card.featured h2, .card.featured strong { color: #edbb00; }
-
-        /* 6. CARD CONTENT */
-        .card h2 {
-            color: #4ecca3;
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card-number {
-            position: absolute;
-            top: -5px;
-            right: 15px;
-            font-size: 5.5rem;
-            color: rgba(255,255,255,0.03);
-            font-weight: 800;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        strong {
-            display: inline-block;
-            color: #4ecca3;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .card:hover strong {
-            letter-spacing: 3px;
-        }
-
-        /* 7. FOOTER */
-        footer {
-            margin-top: 80px;
-            padding: 30px;
-            color: #64748b;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            width: 100%;
-            text-align: center;
-        }
-
-        /* 8. ANIMATION */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 9. RESPONSIVE */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            .container { grid-template-columns: 1fr; }
-            .card { padding: 30px 20px; }
-        }
+        .card h2 { color: #4ecca3; font-size: 1.5rem; margin-bottom: 12px; position: relative; z-index: 2; }
+        .card p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5; position: relative; z-index: 2; }
+        .card-number { position: absolute; top: -5px; right: 15px; font-size: 5.5rem; color: rgba(255,255,255,0.03); font-weight: 800; z-index: 1; pointer-events: none; }
+        strong { display: inline-block; color: #4ecca3; font-size: 1rem; font-weight: bold; transition: 0.3s; }
+        .card:hover strong { letter-spacing: 3px; }
+        footer { margin-top: 80px; padding: 30px; color: #64748b; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; text-align: center; }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 600px) { header h1 { font-size: 2.2rem; } .container { grid-template-columns: 1fr; } .card { padding: 30px 20px; } }
     </style>
 </head>
 
@@ -160,54 +68,11 @@
     </header>
 
     <main class="container">
-
-        <a href="b1.html" class="card">
+        <a href="lab1/index.html" class="card">
             <div class="card-number">01</div>
-            <h2>B1 HTML</h2>
-            <p>Cấu trúc thẻ HTML5 và định dạng văn bản cơ bản.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
-
-        <a href="lab1.html" class="card">
-            <div class="card-number">02</div>
             <h2>LAB 1</h2>
             <p>Thực hành hiệu ứng Transition & Keyframes Animation.</p>
             <strong>Xem bài tập →</strong>
         </a>
 
-        <a href="lab2.html" class="card">
-            <div class="card-number">03</div>
-            <h2>LAB 2</h2>
-            <p>Xử lý hình ảnh và bố cục nâng cao với CSS nâng cao.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
-
-        <a href="lab3.html" class="card">
-            <div class="card-number">04</div>
-            <h2>LAB 3</h2>
-            <p>Thiết kế tương thích đa thiết bị với Flexbox & Grid.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
-
-        <a href="lab4.html" class="card">
-            <div class="card-number">05</div>
-            <h2>LAB 4</h2>
-            <p>Xử lý Animation phức tạp và tương tác người dùng.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
-
-        <a href="lab5.html" class="card featured">
-            <div class="card-number">06</div>
-            <h2>LAB 5</h2>
-            <p>Dự án tổng hợp: Thiết kế giao diện chuyên nghiệp.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
-
-    </main>
-
-    <footer>
-        &copy; 2026 NGUYỄN THÀNH LONG. Designed for Web Module 06.
-    </footer>
-
-</body>
-</html>
+        <a href="lab5/index
