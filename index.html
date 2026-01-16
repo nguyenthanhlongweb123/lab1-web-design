@@ -3,204 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LONG BARCA SHOP - QUẢN LÝ BÀI TẬP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --barca-blue: #004d98;
-            --barca-red: #a50044;
-            --barca-gold: #edbb00;
-            --bg-light: #f4f4f4;
-            --white: #ffffff;
-        }
+    <title>NGUYỄN THÀNH LONG - PORTFOLIO</title>
 
+    <style>
+        /* 1. RESET & BASE STYLES */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-light);
-            display: flex;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
             min-height: 100vh;
-        }
-
-        .sidebar {
-            width: 280px;
-            /* Gradient dọc đặc trưng của Barca */
-            background: linear-gradient(180deg, var(--barca-blue) 50%, var(--barca-red) 50%);
-            color: white;
-            padding: 40px 20px;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            box-shadow: 4px 0 10px rgba(0,0,0,0.2);
-        }
-
-        .profile { 
-            text-align: center; 
-            margin-bottom: 40px; 
-            border-bottom: 2px solid var(--barca-gold);
-            padding-bottom: 20px; 
-        }
-        .profile h2 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--barca-gold); }
-
-        .menu ul { list-style: none; }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            transition: 0.3s;
-            background: rgba(255,255,255,0.1);
-        }
-
-        .menu a:hover {
-            background: var(--barca-gold);
-            color: var(--barca-blue);
-        }
-
-        .content { flex: 1; padding: 40px; }
-        
-        .header-shop {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 15px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            border-left: 10px solid var(--barca-red);
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 50px 20px;
+            overflow-x: hidden;
         }
 
-        .header-shop h1 { font-family: 'Oswald', sans-serif; color: var(--barca-blue); }
+        /* 2. HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
 
-        .dashboard-grid {
+        header h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* 3. GRID CONTAINER */
+        .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border: 1px solid #ddd;
-        }
-
-        .card:hover { transform: translateY(-10px); }
-
-        .card-img {
             width: 100%;
-            height: 180px;
-            background: #eee;
-            display: flex;
-            align-items: center;            justify-content: center;
-            font-size: 3.5rem;
+            max-width: 1100px;
         }
 
-        .card-body { padding: 20px; }
-        .card-body h3 { color: var(--barca-blue); margin-bottom: 10px; font-family: 'Oswald', sans-serif; }
-        .card-body p { font-size: 0.9rem; color: #666; margin-bottom: 20px; line-height: 1.4; }
-
-        .btn-shop {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--barca-red);
-            color: white;
+        /* 4. CARD STYLES */
+        .card {
+            background: #16213e;
+            border: 1px solid #0f3460;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
             text-decoration: none;
-            border-radius: 5px;
+            color: #fff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: #4ecca3;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            background: #1b264f;
+        }
+
+        /* 5. CARD VARIANTS (Lab 5 Highlight) */
+        .card.featured { border-color: #a50044; }
+        .card.featured:hover { 
+            border-color: #edbb00; 
+            box-shadow: 0 15px 30px rgba(165, 0, 68, 0.4); 
+        }
+        .card.featured h2, .card.featured strong { color: #edbb00; }
+
+        /* 6. CARD CONTENT */
+        .card h2 {
+            color: #4ecca3;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-number {
+            position: absolute;
+            top: -5px;
+            right: 15px;
+            font-size: 5.5rem;
+            color: rgba(255,255,255,0.03);
+            font-weight: 800;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        strong {
+            display: inline-block;
+            color: #4ecca3;
+            font-size: 1rem;
             font-weight: bold;
             transition: 0.3s;
         }
 
-        .btn-shop:hover { background: var(--barca-blue); }
+        .card:hover strong {
+            letter-spacing: 3px;
+        }
 
-        .doc-section { margin-top: 40px; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .doc-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .doc-table th { text-align: left; padding: 12px; background: var(--bg-light); color: var(--barca-blue); font-family: 'Oswald', sans-serif; }
-        .doc-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        /* 7. FOOTER */
+        footer {
+            margin-top: 80px;
+            padding: 30px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+            text-align: center;
+        }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; }
-            .content { padding: 20px; }
+        /* 8. ANIMATION */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 9. RESPONSIVE */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .container { grid-template-columns: 1fr; }
+            .card { padding: 30px 20px; }
         }
     </style>
 </head>
+
 <body>
 
-    <aside class="sidebar">
-        <div class="profile">
-            <h2>LONG BARCA SHOP</h2>
-            <p>Football Shirt 2026 Project</p>
-        </div>
-        <nav class="menu">
-            <ul>
-                <li><a href="index.html">🏠 Home Shop</a></li>
-                <li><a href="animation (1)/lab1/index1.html">👕 Categories Jerseys</a></li>
-                <li><a href="lab 1 to 4/index.html">📂 Lab Exercises 1-4</a></li>
-                <li><a href="animation (1)/index.html">🎬 Web Effects</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <header>
+        <h1>My Assignments</h1>
+        <p>Họ tên: Nguyễn Thành Long | Lớp: WE-MĐ06</p>
+    </header>
 
-    <main class="content">
-        <header class="header-shop">
-            <h1>Hệ thống quản lý Shop & Lab</h1>
-            <div style="font-weight: bold; color: var(--barca-red);">M06 - Web Design</div>
-        </header>
+    <main class="container">
 
-        <section class="dashboard-grid">
-            <div class="card">
-                <div class="card-img">👕</div>
-                <div class="card-body">
-                    <h3>Home Kit 2025/26</h3>
-                    <p>Thiết kế áo đấu sân nhà với sọc xanh đỏ truyền thống. Bài tập về Layout sản phẩm chuyên nghiệp.</p>
-                    <a href="animation (1)/lab1/index1.html" class="btn-shop">Xem dự án</a>
-                </div>
-            </div>
+        <a href="b1.html" class="card">
+            <div class="card-number">01</div>
+            <h2>B1 HTML</h2>
+            <p>Cấu trúc thẻ HTML5 và định dạng văn bản cơ bản.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-            <div class="card">
-                <div class="card-img">📂</div>
-                <div class="card-body">
-                    <h3>Kho lưu trữ Lab 1-4</h3>
-                    <p>Tổng hợp các bài tập cơ bản về HTML/CSS đã thực hiện: Định dạng văn bản, Table, Layout cơ bản.</p>
-                    <a href="lab 1 to 4/index.html" class="btn-shop">Mở thư mục</a>
-                </div>
-            </div>
+        <a href="lab1.html" class="card">
+            <div class="card-number">02</div>
+            <h2>LAB 1</h2>
+            <p>Thực hành hiệu ứng Transition & Keyframes Animation.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-            <div class="card" style="border-bottom: 5px solid var(--barca-gold);">
-                <div class="card-img">✨</div>
-                <div class="card-body">
-                    <h3>Web Effects</h3>
-                    <p>Các hiệu ứng chuyển động mượt mà sử dụng Transition và Keyframes cho website bán áo đấu.</p>
-                    <a href="animation (1)/index.html" class="btn-shop">Xem hiệu ứng</a>
-                </div>
-            </div>
-        </section>
+        <a href="lab2.html" class="card">
+            <div class="card-number">03</div>
+            <h2>LAB 2</h2>
+            <p>Xử lý hình ảnh và bố cục nâng cao với CSS nâng cao.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-        <section class="doc-section">
-            <h2 style="font-family: 'Oswald', sans-serif; color: var(--barca-blue); margin-bottom: 10px;">Shop Document Management</h2>
-            <table class="doc-table">
-                <thead>
-                    <tr>
-                        <th>Document Name</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>📄 Plans to sell Barca shirts.docx</td><td><span style="color: #28a745; font-weight: bold;">✔ Ready</span></td></tr>
-                    <tr><td>📄 Lab1.docx Warehouse List</td><td><span style="color: #28a745; font-weight: bold;">✔ Ready</span></td></tr>
-                    <tr><td>📄 Presentation content Barca.docx</td><td><span style="color: #fd7e14; font-weight: bold;">⌛ Waiting</span></td></tr>
-                </tbody>
-            </table>
-        </section>
+        <a href="lab3.html" class="card">
+            <div class="card-number">04</div>
+            <h2>LAB 3</h2>
+            <p>Thiết kế tương thích đa thiết bị với Flexbox & Grid.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
+
+        <a href="lab4.html" class="card">
+            <div class="card-number">05</div>
+            <h2>LAB 4</h2>
+            <p>Xử lý Animation phức tạp và tương tác người dùng.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
+
+        <a href="lab5.html" class="card featured">
+            <div class="card-number">06</div>
+            <h2>LAB 5</h2>
+            <p>Dự án tổng hợp: Thiết kế giao diện chuyên nghiệp.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
+
     </main>
+
+    <footer>
+        &copy; 2026 NGUYỄN THÀNH LONG. Designed for Web Module 06.
+    </footer>
 
 </body>
 </html>
