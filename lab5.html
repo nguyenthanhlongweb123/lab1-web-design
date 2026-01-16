@@ -3,291 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FC Barcelona Store - Professional Edition</title>
+    <title>NGUYỄN THÀNH LONG - PORTFOLIO</title>
+
     <style>
-        /* 1. BIẾN MÀU & DARK MODE */
-        :root {
-            --primary: #a50044; --secondary: #004d98; --gold: #edbb00;
-            --bg: #ffffff; --text: #1a1a1a; --card-bg: #f4f4f4;
-            --footer-bg: #0b0b0b;
-        }
-        body.dark-mode {
-            --bg: #121212; --text: #f4f4f4; --card-bg: #1e1e1e;
-            --footer-bg: #000000;
-        }
+        /* RESET & BASE STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: var(--bg); color: var(--text); 
-            transition: background 0.5s ease; overflow-x: hidden;
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            overflow-x: hidden;
         }
 
-        /* 2. ANIMATIONS */
-        @keyframes shake { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* 3. CUSTOM CURSOR */
-        #cursor-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10000; }
-        #cursor-outline { width: 30px; height: 30px; border: 2px solid var(--secondary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; }
-
-        /* 4. HEADER */
+        /* HEADER */
         header {
-            position: fixed; top: 0; width: 100%; height: 80px;
-            background: var(--bg); display: flex; justify-content: space-between;
-            align-items: center; padding: 0 8%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
         }
-        .logo img { height: 50px; }
-        nav a {
-            margin-left: 20px; text-decoration: none; color: var(--text); 
-            font-weight: bold; font-size: 13px; text-transform: uppercase;
-            transition: 0.3s;
-        }
-        nav a:hover { color: var(--primary); }
 
-        /* 5. SECTIONS CHUNG */
-        section { padding: 100px 10%; min-height: 60vh; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--primary); font-weight: 800; }
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1s all ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* 6. HERO */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://wallpaperaccess.com/full/1155047.jpg') center/cover;
-            color: #fff; text-align: center;
-        }
-        .hero h1 { font-size: 5rem; animation: fadeIn 1.5s; color: var(--gold); }
-
-        /* 7. SHOP GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 20px; text-align: center; transition: 0.4s; border: 1px solid rgba(165,0,68,0.1); }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
-
-        /* 8. TESTIMONIALS */
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .testi-card { padding: 30px; background: var(--card-bg); border-radius: 15px; position: relative; }
-        .testi-card::before { content: '"'; font-size: 5rem; color: var(--gold); position: absolute; top: -10px; left: 10px; opacity: 0.3; }
-
-        /* 9. FAQ */
-        .faq-item { margin-bottom: 15px; background: var(--card-bg); padding: 20px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-        .faq-item:hover { background: rgba(165,0,68,0.05); }
-        .faq-answer { display: none; padding-top: 15px; line-height: 1.6; border-top: 1px solid #ddd; margin-top: 10px; }
-
-        /* 10. LIÊN HỆ - TÁCH BIỆT CÁC KHỐI */
-        .contact-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 25px; 
-        }
-        .info-card { 
-            background: var(--card-bg); 
-            padding: 40px 20px; 
-            border-radius: 20px; 
-            text-align: center; 
-            transition: 0.4s; 
-            border-bottom: 4px solid var(--secondary);
-        }
-        .info-card:hover { 
-            transform: translateY(-10px); 
-            background: var(--primary); 
-            color: white;
-            border-bottom: 4px solid var(--gold);
-        }
-        .info-card h4 { 
-            font-size: 1.2rem; 
-            margin-bottom: 15px; 
-            color: var(--primary);
+        header h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
-        .info-card:hover h4 { color: var(--gold); }
-        .info-card p { line-height: 1.6; font-size: 0.95rem; }
 
-        /* 11. ĐĂNG KÝ */
-        .reg-section { background: var(--secondary); color: white; border-radius: 30px; padding: 50px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
-        .reg-text { flex: 1; }
-        .reg-form { flex: 1; min-width: 300px; }
-        .reg-form input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; }
-
-        .btn-cta {
-            background: var(--primary); color: white; border: none; padding: 15px 35px;
-            border-radius: 50px; font-weight: bold; animation: shake 3s infinite; transition: 0.3s;
+        header p {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            font-weight: 300;
         }
-        .btn-cta:hover { background: var(--gold); color: var(--primary); }
 
-        .toggle-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: var(--gold); border: none; z-index: 2000; font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        
-        footer { padding: 60px 10%; background: var(--footer-bg); color: #fff; text-align: center; }
-        .social-links { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
-        .social-links a { color: var(--gold); text-decoration: none; font-weight: bold; }
+        /* GRID CONTAINER */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+        }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
+        /* CARD STYLES */
+        .card {
+            background: #16213e;
+            border: 1px solid #0f3460;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: #4ecca3;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            background: #1b264f;
+        }
+
+        /* LAB 5 HIGHLIGHT */
+        .card.featured { border-color: #a50044; }
+        .card.featured:hover { 
+            border-color: #edbb00; 
+            box-shadow: 0 15px 30px rgba(165, 0, 68, 0.4); 
+        }
+        .card.featured h2, .card.featured strong { color: #edbb00; }
+
+        .card h2 {
+            color: #4ecca3;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-number {
+            position: absolute;
+            top: -5px;
+            right: 15px;
+            font-size: 5.5rem;
+            color: rgba(255,255,255,0.03);
+            font-weight: 800;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        strong {
+            display: inline-block;
+            color: #4ecca3;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .card:hover strong {
+            letter-spacing: 3px;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 30px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .container { grid-template-columns: 1fr; }
+            .card { padding: 30px 20px; }
         }
     </style>
 </head>
+
 <body>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-outline"></div>
-    <button class="toggle-btn" id="darkModeBtn">🌓</button>
-
     <header>
-        <div class="logo"><img src="app/assets/images/logo-barca.jpg" alt="FCB"></div>
-        <nav>
-            <a href="#home">Trang Chủ</a>
-            <a href="#shop">Sản Phẩm</a>
-            <a href="#testimonials">Đánh Giá</a>
-            <a href="#faq">Hỏi Đáp</a>
-            <a href="#register">Gia Nhập</a>
-            <a href="#contact">Liên Hệ</a>
-        </nav>
+        <h1>My Assignments</h1>
+        <p>Họ tên: Nguyễn Thành Long | Lớp: WE-MĐ06</p>
     </header>
 
-    <section class="hero" id="home">
-        <h1>MÉS QUE UN CLUB</h1>
-        <p style="letter-spacing: 5px; color: var(--gold); font-size: 1.5rem;">FC BARCELONA OFFICIAL STORE</p>
-    </section>
+    <main class="container">
 
-    <section id="shop">
-        <h2 class="section-title reveal">BỘ SƯU TẬP GIÀY 2024</h2>
-        <div class="grid">
-            <div class="card reveal">
-                <img src="app/assets/images/anh1.jpg" alt="Giày 1">
-                <h3>Nike Phantom FCB Edition</h3>
-                <p style="color:var(--primary); font-weight:bold; margin: 10px 0;">1.850.000đ</p>
-                <button class="btn-cta">Mua Ngay</button>
-            </div>
-            <div class="card reveal">
-                <img src="app/assets/images/.anh2.jpg" alt="Giày 2">
-                <h3>Air Jordan x Barca Retro</h3>
-                <p style="color:var(--primary); font-weight:bold; margin: 10px 0;">2.400.000đ</p>
-                <button class="btn-cta">Mua Ngay</button>
-            </div>
-        </div>
-    </section>
+        <a href="lab1/lab1.html" class="card">
+            <div class="card-number">01</div>
+            <h2>LAB 1</h2>
+            <p>Thực hành hiệu ứng Transition & Keyframes Animation.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-    <section id="testimonials" class="reveal" style="background: rgba(165,0,68,0.02);">
-        <h2 class="section-title">CULERS CHIA SẺ</h2>
-        <div class="testi-grid">
-            <div class="testi-card">
-                <p>"Giày cầm rất chắc tay, form chuẩn và cực kỳ êm. Là một fan Barca 10 năm, tôi thực sự hài lòng với chất lượng tại Store."</p>
-                <h5 style="margin-top:15px; color:var(--secondary)">- Lê Minh Hiếu (TP.HCM)</h5>
-            </div>
-            <div class="testi-card">
-                <p>"Giao hàng thần tốc, đóng gói hộp giày rất đẹp, không bị móp méo. Sẽ ủng hộ shop dài dài trong các mùa giải tới."</p>
-                <h5 style="margin-top:15px; color:var(--secondary)">- Nguyễn Bích Phương (Hà Nội)</h5>
-            </div>
-        </div>
-    </section>
+        <a href="lab2/lab2.html" class="card">
+            <div class="card-number">02</div>
+            <h2>LAB 2</h2>
+            <p>Xử lý hình ảnh và bố cục nâng cao với CSS.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-    <section id="faq" class="reveal">
-        <h2 class="section-title">HỖ TRỢ KHÁCH HÀNG</h2>
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <strong>Sản phẩm có phải là hàng chính hãng không?</strong>
-                <div class="faq-answer">Tất cả sản phẩm tại Store đều có giấy chứng nhận ủy quyền chính thức từ FC Barcelona và đối tác Nike.</div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <strong>Tôi có được kiểm tra hàng trước khi thanh toán?</strong>
-                <div class="faq-answer">Có, Store hỗ trợ đồng kiểm khi nhận hàng. Bạn có thể thử size và kiểm tra chất lượng trước khi trả tiền.</div>
-            </div>
-        </div>
-    </section>
+        <a href="lab3/lab3.html" class="card">
+            <div class="card-number">03</div>
+            <h2>LAB 3</h2>
+            <p>Thiết kế tương thích đa thiết bị với Flexbox & Grid.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-    <section id="register" class="reveal">
-        <div class="reg-section">
-            <div class="reg-text">
-                <h2>Gia Nhập Hội Culer</h2>
-                <p style="margin-top: 15px;">Đăng ký để trở thành thành viên ưu tiên, nhận voucher giảm giá 20% và cơ hội sở hữu vé xem trực tiếp tại Camp Nou.</p>
-            </div>
-            <div class="reg-form">
-                <form id="culerForm">
-                    <input type="email" placeholder="Địa chỉ Email của bạn" required>
-                    <button type="submit" class="btn-cta" style="width: 100%;">NHẬN ƯU ĐÃI NGAY</button>
-                </form>
-            </div>
-        </div>
-    </section>
+        <a href="lab4/lab4.html" class="card">
+            <div class="card-number">04</div>
+            <h2>LAB 4</h2>
+            <p>Xử lý Animation phức tạp và tương tác.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-    <section id="contact" class="reveal">
-        <h2 class="section-title">THÔNG TIN LIÊN HỆ</h2>
-        <div class="contact-grid">
-            <div class="info-card">
-                <h4>📍 Địa Chỉ Trụ Sở</h4>
-                <p>Số 189, Đường Camp Nou</p>
-                <p>Phường Bến Nghé, Quận 1</p>
-                <p>TP. Hồ Chí Minh</p>
-            </div>
+        <a href="lab5/lab5.html" class="card featured">
+            <div class="card-number">05</div>
+            <h2>LAB 5</h2>
+            <p>Dự án tổng hợp: Thiết kế giao diện chuyên nghiệp.</p>
+            <strong>Xem bài tập →</strong>
+        </a>
 
-            <div class="info-card">
-                <h4>📞 Đường Dây Nóng</h4>
-                <p><strong>Mua hàng:</strong> 1900 6789</p>
-                <p><strong>Hỗ trợ kỹ thuật:</strong> 028 2244 8888</p>
-            </div>
-
-            <div class="info-card">
-                <h4>✉️ Kênh Trực Tuyến</h4>
-                <p>support@fcbarca.vn</p>
-                <p>www.fcbarcelona.com.vn</p>
-            </div>
-
-            <div class="info-card">
-                <h4>⏰ Thời Gian Phục Vụ</h4>
-                <p>Thứ 2 - Thứ 7: 08:00 - 22:00</p>
-                <p>Chủ Nhật: 09:00 - 21:00</p>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <footer>
-        <p style="font-size: 1.2rem; font-weight: bold; color: var(--gold);">FC BARCELONA VIETNAM OFFICIAL</p>
-        <p style="margin: 10px 0; opacity: 0.7;">Bản quyền thuộc về cộng đồng Culer Việt Nam - Més que un club</p>
-        <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">Tiktok</a>
-        </div>
+        &copy; 2026 NGUYỄN THÀNH LONG. Designed for Web Module 06.
     </footer>
 
-    <script>
-        // 1. CUSTOM CURSOR
-        const dot = document.getElementById('cursor-dot');
-        const outline = document.getElementById('cursor-outline');
-        window.addEventListener('mousemove', (e) => {
-            dot.style.left = outline.style.left = e.clientX + 'px';
-            dot.style.top = outline.style.top = e.clientY + 'px';
-        });
-
-        // 2. DARK MODE
-        document.getElementById('darkModeBtn').addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
-
-        // 3. SCROLL REVEAL
-        function reveal() {
-            document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                    el.classList.add("active");
-                }
-            });
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
-
-        // 4. FAQ TOGGLE
-        function toggleFaq(el) {
-            const answer = el.querySelector('.faq-answer');
-            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
-        }
-
-        // 5. FORM SUBMIT
-        document.getElementById('culerForm').onsubmit = (e) => {
-            e.preventDefault();
-            alert('Cảm ơn Culer! Mã giảm giá 20% đã được gửi.');
-        };
-    </script>
 </body>
 </html>
