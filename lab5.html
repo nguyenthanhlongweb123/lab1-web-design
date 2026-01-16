@@ -1,201 +1,157 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGUYỄN THÀNH LONG - PORTFOLIO</title>
-
+    <title>FC Barcelona - Nguyễn Thành Long</title>
     <style>
-        /* RESET & BASE STYLES */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #a50044; --secondary: #004d98; --gold: #edbb00;
+            --bg: #ffffff; --text: #1a1a1a; --card-bg: #f8f9fa;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; color: var(--text); background: var(--bg); line-height: 1.6; }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #1a1a2e;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px 20px;
-            overflow-x: hidden;
+        /* 1. DÒNG CHỮ CHẠY NGANG */
+        .marquee-top {
+            background: var(--primary); color: var(--gold);
+            padding: 12px 0; font-weight: bold; text-transform: uppercase;
+            border-bottom: 3px solid var(--secondary);
         }
 
-        /* HEADER */
+        /* 2. HEADER */
         header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeInDown 0.8s ease-out;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 8%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
         }
+        .logo img { height: 60px; } /* Dùng logo-barca.jpg của bạn */
+        nav a { margin-left: 20px; text-decoration: none; color: var(--secondary); font-weight: bold; }
 
-        header h1 {
-            font-size: 3rem;
-            background: linear-gradient(to right, #00d2ff, #3a7bd5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 4px;
-            text-transform: uppercase;
+        /* 3. HERO (Dùng màu Gradient cực sang) */
+        .hero {
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            color: #fff; text-align: center;
         }
+        .hero h1 { font-size: 3rem; margin: 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
 
-        header p {
-            margin-top: 15px;
-            color: #94a3b8;
-            font-size: 1.2rem;
-            font-weight: 300;
+        /* 4. SECTION CHUNG */
+        section { padding: 60px 10%; }
+        .section-title { text-align: center; color: var(--primary); font-size: 2.2rem; margin-bottom: 40px; }
+
+        /* 5. NỘI DUNG GIỚI THIỆU & TIN TỨC (Nhiều nội dung) */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .info-box { background: var(--card-bg); padding: 30px; border-radius: 20px; border-top: 5px solid var(--primary); }
+        .info-box h3 { color: var(--secondary); margin-bottom: 15px; }
+
+        /* 6. CỬA HÀNG (Dùng ảnh anh1.jpg và anh2.jpg của bạn) */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .product-card { 
+            background: #fff; border-radius: 20px; border: 1px solid #eee; 
+            padding: 20px; text-align: center; transition: 0.3s;
         }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+        .price { color: var(--primary); font-weight: bold; font-size: 1.2rem; }
 
-        /* GRID CONTAINER */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            width: 100%;
-            max-width: 1100px;
+        /* 7. FORM ĐĂNG KÝ */
+        .contact-form { 
+            background: var(--secondary); color: white; padding: 60px; 
+            text-align: center; border-radius: 30px; margin: 40px 10%;
         }
-
-        /* CARD STYLES */
-        .card {
-            background: #16213e;
-            border: 1px solid #0f3460;
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card:hover {
-            transform: translateY(-15px);
-            border-color: #4ecca3;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            background: #1b264f;
-        }
-
-        /* LAB 5 HIGHLIGHT */
-        .card.featured { border-color: #a50044; }
-        .card.featured:hover { 
-            border-color: #edbb00; 
-            box-shadow: 0 15px 30px rgba(165, 0, 68, 0.4); 
-        }
-        .card.featured h2, .card.featured strong { color: #edbb00; }
-
-        .card h2 {
-            color: #4ecca3;
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card-number {
-            position: absolute;
-            top: -5px;
-            right: 15px;
-            font-size: 5.5rem;
-            color: rgba(255,255,255,0.03);
-            font-weight: 800;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        strong {
-            display: inline-block;
-            color: #4ecca3;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .card:hover strong {
-            letter-spacing: 3px;
-        }
-
-        footer {
-            margin-top: 80px;
-            padding: 30px;
-            color: #64748b;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            width: 100%;
-            text-align: center;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            .container { grid-template-columns: 1fr; }
-            .card { padding: 30px 20px; }
+        .contact-form input { padding: 12px; border-radius: 25px; border: none; width: 280px; margin: 10px; }
+        .btn-gold { 
+            background: var(--gold); color: #000; padding: 12px 35px; 
+            border-radius: 25px; border: none; font-weight: bold; cursor: pointer;
         }
     </style>
 </head>
-
 <body>
 
+    <div class="marquee-top">
+        <marquee scrollamount="10">🏆 FC BARCELONA - MÉS QUE UN CLUB - CHÀO MỪNG NGUYỄN THÀNH LONG - GIẢM GIÁ 20% TOÀN BỘ CỬA HÀNG 🏆</marquee>
+    </div>
+
     <header>
-        <h1>My Assignments</h1>
-        <p>Họ tên: Nguyễn Thành Long | Lớp: WE-MĐ06</p>
+        <div class="logo">
+            <img src="app/assets/images/logo-barca.jpg" alt="Logo Barca">
+        </div>
+        <nav>
+            <a href="index.html">Trang Chủ</a>
+            <a href="#about">Lịch Sử</a>
+            <a href="#news">Tin Tức</a>
+            <a href="#shop">Cửa Hàng</a>
+        </nav>
     </header>
 
-    <main class="container">
+    <div class="hero">
+        <h1>BARCELONA STORE</h1>
+        <p>Hành trình chinh phục những giấc mơ cùng Culers Việt Nam</p>
+    </div>
 
-        <a href="lab1/lab1.html" class="card">
-            <div class="card-number">01</div>
-            <h2>LAB 1</h2>
-            <p>Thực hành hiệu ứng Transition & Keyframes Animation.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
+    <section id="about">
+        <h2 class="section-title">Lịch Sử & Giá Trị</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>Hơn cả một câu lạc bộ</h3>
+                <p>Khẩu hiệu "Més que un club" không chỉ là bóng đá. Đó là đại diện cho tinh thần của người dân Catalonia, sự dân chủ và lòng tự hào dân tộc mãnh liệt từ năm 1899.</p>
+            </div>
+            <div class="info-box">
+                <h3>Học viện La Masia</h3>
+                <p>Nơi sản sinh ra những huyền thoại thế giới như Messi, Iniesta, Xavi. Chúng tôi tin vào sức mạnh của tuổi trẻ và sự đào tạo bài bản từ gốc rễ.</p>
+            </div>
+            <div class="info-box">
+                <h3>Spotify Camp Nou</h3>
+                <p>Thánh địa của những trận cầu đỉnh cao. Hiện tại sân vận động đang được nâng cấp để mang lại trải nghiệm đẳng cấp nhất lịch sử cho người hâm mộ.</p>
+            </div>
+        </div>
+    </section>
 
-        <a href="lab2/lab2.html" class="card">
-            <div class="card-number">02</div>
-            <h2>LAB 2</h2>
-            <p>Xử lý hình ảnh và bố cục nâng cao với CSS.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
+    <section id="news" style="background: #f0f2f5;">
+        <h2 class="section-title">Tin Tức Mới Nhất</h2>
+        <div class="info-grid">
+            <div class="info-box" style="background: white;">
+                <h4 style="color: var(--primary);">Cập nhật thị trường chuyển nhượng</h4>
+                <p>Ban lãnh đạo Barca đang có những cuộc đàm phán quan trọng để mang về những tài năng trẻ xuất sắc nhất cho mùa giải 2026.</p>
+            </div>
+            <div class="info-box" style="background: white;">
+                <h4 style="color: var(--primary);">Kết quả vòng đấu gần nhất</h4>
+                <p>Với lối đá Tiki-taka trứ danh, Barcelona đã giành chiến thắng thuyết phục 3-0, tiếp tục duy trì vị trí dẫn đầu bảng xếp hạng La Liga.</p>
+            </div>
+        </div>
+    </section>
 
-        <a href="lab3/lab3.html" class="card">
-            <div class="card-number">03</div>
-            <h2>LAB 3</h2>
-            <p>Thiết kế tương thích đa thiết bị với Flexbox & Grid.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
+    <section id="shop">
+        <h2 class="section-title">Sản Phẩm Độc Quyền</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="app/assets/images/anh1.jpg" alt="Giày 1">
+                <h3>Nike Phantom FCB</h3>
+                <p class="price">1.850.000đ</p>
+                <button class="btn-gold">Mua ngay</button>
+            </div>
+            <div class="product-card">
+                <img src="app/assets/images/anh2.jpg" alt="Giày 2">
+                <h3>Air Jordan Barca</h3>
+                <p class="price">2.400.000đ</p>
+                <button class="btn-gold">Mua ngay</button>
+            </div>
+        </div>
+    </section>
 
-        <a href="lab4/lab4.html" class="card">
-            <div class="card-number">04</div>
-            <h2>LAB 4</h2>
-            <p>Xử lý Animation phức tạp và tương tác.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
+    <div class="contact-form">
+        <h2>THAM GIA CỘNG ĐỒNG CULERS</h2>
+        <p>Để lại email để nhận mã giảm giá 20% và quà tặng bí mật</p>
+        <form>
+            <input type="email" placeholder="Nhập địa chỉ Email..." required>
+            <button type="submit" class="btn-gold">ĐĂNG KÝ NGAY</button>
+        </form>
+    </div>
 
-        <a href="lab5/lab5.html" class="card featured">
-            <div class="card-number">05</div>
-            <h2>LAB 5</h2>
-            <p>Dự án tổng hợp: Thiết kế giao diện chuyên nghiệp.</p>
-            <strong>Xem bài tập →</strong>
-        </a>
-
-    </main>
-
-    <footer>
-        &copy; 2026 NGUYỄN THÀNH LONG. Designed for Web Module 06.
+    <footer style="text-align: center; padding: 40px; color: #888;">
+        &copy; 2026 Nguyễn Thành Long | WE-MĐ06 | FC Barcelona Fan Project
     </footer>
 
 </body>
