@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova | Nền tảng Công nghệ Tối ưu 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #22d3ee;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #f43f5e;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--light); color: var(--dark); line-height: 1.6; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; height: 70px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 8%; background: var(--glass);
+            backdrop-filter: blur(12px); z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        header.scrolled { height: 60px; background: white; box-shadow: var(--shadow-sm); }
+        .logo { font-size: 22px; font-weight: 900; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+
+        nav { display: flex; align-items: center; }
+        nav a { margin-left: 25px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 14px; position: relative; transition: 0.3s; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        nav a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--primary); border-radius: 2px; }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 140px 8% 80px; text-align: center;
+            background: radial-gradient(circle at 50% -20%, #e0e7ff 0%, var(--light) 70%);
+        }
+        .hero h1 { font-size: clamp(32px, 5vw, 60px); font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; }
+        .hero h1 span { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: #64748b; max-width: 650px; margin: 0 auto 35px; font-size: 18px; }
+
+        /* STATS */
+        .stats {
+            display: flex; justify-content: center; gap: 50px; padding: 40px 8%;
+            background: white; margin: -40px 8% 40px; border-radius: 20px; box-shadow: var(--shadow-sm);
+        }
+        .stats div { text-align: center; }
+        .stats b { display: block; font-size: 24px; color: var(--primary); }
+        .stats small { color: #64748b; font-weight: 700; font-size: 12px; }
+
+        /* GRID SYSTEM */
+        section { padding: 80px 8%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card-pro {
+            background: white; border-radius: 20px; padding: 40px;
+            border: 1px solid #e2e8f0; transition: 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .card-pro:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: var(--shadow-lg); }
+
+        /* TAGS & LABELS */
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
+        .tag-tech { background: #e0e7ff; color: var(--primary); }
+        .tag-promo { background: #ffe4e6; color: var(--accent); }
+
+        /* PRICE BOX */
+        .price-box {
+            background: white; border-radius: 24px; padding: 40px;
+            text-align: center; border: 1px solid #e2e8f0; position: relative; transition: 0.3s;
+        }
+        .price-box.featured { border: 2px solid var(--primary); box-shadow: var(--shadow-lg); }
+        .price-value { font-size: 48px; font-weight: 800; margin: 20px 0; }
+        .price-value small { font-size: 16px; color: #64748b; font-weight: 400; }
+
+        /* BUTTONS */
+        .btn-pro {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 12px 28px; border-radius: 12px; font-weight: 700;
+            text-decoration: none; transition: 0.3s; cursor: pointer; border: none;
+        }
+        .btn-fill { background: var(--primary); color: white; width: 100%; }
+        .btn-fill:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+        /* REVIEWS */
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: grid; place-items: center; font-weight: 800; }
+
+        /* FOOTER */
+        footer { background: var(--dark); color: white; padding: 60px 8% 30px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding-top: 20px; text-align: center; font-size: 13px; opacity: 0.6; }
+
+        #backToTop {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 45px; height: 45px; background: var(--primary); color: white;
+            border-radius: 50%; display: grid; place-items: center;
+            cursor: pointer; opacity: 0; transition: 0.3s; z-index: 999;
+        }
+        #backToTop.show { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <a href="#" class="logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            TechNova
+        </a>
+        <nav>
+            <a href="#home" class="active">Trang chủ</a>
+            <a href="#promo">Ưu đãi</a>
+            <a href="#news">Tin tức</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+    </header>
+
+    <div id="backToTop"><i class="fas fa-chevron-up"></i></div>
+
+    <section class="hero" id="home">
+        <h1>Tương lai <span>Chuyển đổi số</span><br>Bắt đầu từ đây</h1>
+        <p>TechNova cung cấp hạ tầng Cloud và giải pháp AI tối ưu nhất cho doanh nghiệp khởi nghiệp toàn cầu.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="#promo" class="btn-pro btn-fill" style="width: auto;">Xem báo giá</a>
+            <a href="#contact" class="btn-pro" style="background: white; border: 1px solid #ddd; color: var(--dark);">Dùng thử miễn phí</a>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div><b>500+</b><small>ĐỐI TÁC</small></div>
+        <div><b>99.9%</b><small>UPTIME</small></div>
+        <div><b>24/7</b><small>HỖ TRỢ</small></div>
+    </div>
+
+    <section id="promo">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <span class="tag tag-promo">Khuyến mãi tháng 1</span>
+            <h2>Gói giải pháp tối ưu</h2>
+        </div>
+        <div class="grid">
+            <div class="price-box">
+                <p>Starter</p>
+                <div class="price-value">0đ <small>/tháng</small></div>
+                <ul style="list-style: none; text-align: left; margin-bottom: 25px; font-size: 14px; color: #64748b;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 8px;"></i> 2GB Cloud Storage</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 8px;"></i> Cộng đồng hỗ trợ</li>
+                </ul>
+                <a href="#contact" class="btn-pro" style="width: 100%; border: 1px solid #ddd; color: var(--dark); text-decoration: none;">Bắt đầu ngay</a>
+            </div>
+
+            <div class="price-box featured">
+                <div style="position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 50px; font-size: 11px; font-weight: 800;">PHỔ BIẾN</div>
+                <p>Professional</p>
+                <div class="price-value">199k <small>/tháng</small></div>
+                <ul style="list-style: none; text-align: left; margin-bottom: 25px; font-size: 14px;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 8px;"></i> Unlimited Storage</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 8px;"></i> Hỗ trợ kỹ thuật 24/7</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 8px;"></i> AI Assistant Pro</li>
+                </ul>
+                <a href="#contact" class="btn-pro btn-fill">Đăng ký ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" style="background: #fff;">
+        <h2 style="text-align: center; margin-bottom: 40px;">Bản tin công nghệ</h2>
+        <div class="grid">
+            <div class="card-pro">
+                <div style="width: 100%; height: 150px; background: #f1f5f9; border-radius: 12px; display: grid; place-items: center; margin-bottom: 20px;">
+                    <i class="fas fa-microchip fa-3x" style="color: var(--primary); opacity: 0.5;"></i>
+                </div>
+                <span class="tag tag-tech">Cập nhật</span>
+                <h3>Sức mạnh Chip AI 2026</h3>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Tăng hiệu suất xử lý lên 300% với kiến trúc mới đột phá...</p>
+                <a href="#" style="color: var(--primary); font-weight: 700; text-decoration: none;">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="card-pro">
+                <div style="width: 100%; height: 150px; background: #f1f5f9; border-radius: 12px; display: grid; place-items: center; margin-bottom: 20px;">
+                    <i class="fas fa-shield-alt fa-3x" style="color: var(--secondary); opacity: 0.5;"></i>
+                </div>
+                <span class="tag tag-tech">Bảo mật</span>
+                <h3>Bảo mật đa lớp Cloud</h3>
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">Hệ thống xác thực sinh trắc học đạt chứng chỉ quốc tế...</p>
+                <a href="#" style="color: var(--primary); font-weight: 700; text-decoration: none;">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 style="text-align: center; margin-bottom: 40px;">Đánh giá <span>Khách hàng</span></h2>
+        <div class="grid">
+            <div class="card-pro">
+                <p>"Dịch vụ tuyệt vời, hệ thống rất ổn định cho doanh nghiệp lớn."</p>
+                <div style="display:flex; align-items:center; gap:10px; margin-top:20px;">
+                    <div class="avatar">AN</div><b>Anh Nam</b>
+                </div>
+            </div>
+            <div class="card-pro">
+                <p>"Hỗ trợ kỹ thuật 24/7 cực kỳ nhiệt tình và chuyên nghiệp."</p>
+                <div style="display:flex; align-items:center; gap:10px; margin-top:20px;">
+                    <div class="avatar" style="background:var(--secondary)">HL</div><b>Huyền Linh</b>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div style="background: var(--dark); padding: 40px; border-radius: 30px; color: white;">
+            <h2 style="color: white; text-align: center; margin-bottom: 30px;">ĐĂNG KÝ TƯ VẤN</h2>
+            <form id="optForm" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" placeholder="Tên công ty" required style="padding: 12px; border-radius: 8px; border: none;">
+                <input type="email" id="userMail" placeholder="Email liên hệ" required style="padding: 12px; border-radius: 8px; border: none;">
+                <select style="padding: 12px; border-radius: 8px; border: none;">
+                    <option>Quy mô: 1-10 người</option>
+                    <option>Quy mô: 50+ người</option>
+                </select>
+                <button class="btn-pro btn-fill">Gửi thông tin ngay</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px;">
+            <div class="logo" style="color: white;">TechNova</div>
+            <div style="display: flex; gap: 30px;">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-linkedin-in"></i>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 TechNova Corporation. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            const btt = document.getElementById('backToTop');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            btt.classList.toggle('show', window.scrollY > 400);
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            let current = "";
+            sections.forEach(section => {
+                if (pageYOffset >= section.offsetTop - 120) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) link.classList.add('active');
+            });
+        });
+
+        document.getElementById('backToTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        document.getElementById('optForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Cảm ơn bạn! TechNova sẽ liên hệ lại trong 24h.');
+            e.target.reset();
+        };
+    </script>
+</body>
+</html>
