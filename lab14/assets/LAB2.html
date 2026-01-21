@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 - CSS Keyframes Animation</title>
+    <style>
+        /* Toàn bộ giao diện */
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .main-title {
+            color: #4cc9f0;
+            text-align: center;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        /* Khung bao ngoài mỗi bài học */
+        .card {
+            background-color: #161b22;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #30363d;
+        }
+
+        .lesson-title {
+            color: #ffb703;
+            border-left: 4px solid #ffb703;
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        /* Lesson 1: Horizontal Text (Marquee) */
+        .marquee-container {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 15px 0;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            color: #219ebc;
+            font-size: 1.1rem;
+            animation: marqueeEffect 15s linear infinite;
+        }
+
+        @keyframes marqueeEffect {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Lesson 2: Carousels & Transformations (Mô phỏng 3 khối xoay) */
+        .carousel-box {
+            display: flex;
+            justify-content: space-around;
+            perspective: 1000px;
+            height: 150px;
+            align-items: center;
+        }
+
+        .shape {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            animation: rotateShape 5s infinite linear;
+        }
+
+        .shape-blue { background: linear-gradient(45deg, #48cae4, #023e8a); }
+        .shape-purple { background: linear-gradient(45deg, #f72585, #7209b7); }
+        .shape-pink { background: linear-gradient(45deg, #ff4d6d, #800f2f); }
+
+        @keyframes rotateShape {
+            from { transform: rotateY(0deg) rotateX(0deg); }
+            to { transform: rotateY(360deg) rotateX(360deg); }
+        }
+
+        /* Lesson 3: Photos appear gradually */
+        .image-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .image-row img {
+            width: 30%;
+            border-radius: 5px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards;
+        }
+
+        .img-1 { animation-delay: 0.5s; }
+        .img-2 { animation-delay: 1.5s; }
+        .img-3 { animation-delay: 2.5s; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Lesson 4: Call To Action Button */
+        .button-center {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .cta-button {
+            background-color: #ff2a00;
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 42, 0, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(255, 42, 0, 0); }
+            100% { transform: scale(1); }
+        }
+
+        /* Lesson 5: Auto Photo Slider */
+        .slider-frame {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .slider-content {
+            display: flex;
+            width: 300%; /* 3 ảnh */
+            height: 100%;
+            animation: slideAuto 12s infinite ease-in-out;
+        }
+
+        .slider-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slideAuto {
+            0%, 30% { transform: translateX(0); }
+            33%, 63% { transform: translateX(-33.33%); }
+            66%, 96% { transform: translateX(-66.66%); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="main-title">LAB 2: CSS KEYFRAMES ANIMATION</h1>
+
+        <div class="card">
+            <h2 class="lesson-title">Lesson 1: Horizontal Text (Marquee)</h2>
+            <div class="marquee-container">
+                <div class="marquee-text">
+                    Welcome to Lab 2 - Professional CSS Keyframes Animation System!
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="lesson-title">Lesson 2: Carousels & Transformations</h2>
+            <div class="carousel-box">
+                <div class="shape shape-blue"></div>
+                <div class="shape shape-purple"></div>
+                <div class="shape shape-pink"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="lesson-title">Lesson 3: Photos appear gradually</h2>
+            <div class="image-row">
+                <img src="https://picsum.photos/400/300?sig=1" class="img-1" alt="Sea">
+                <img src="https://picsum.photos/400/300?sig=2" class="img-2" alt="Mountain">
+                <img src="https://picsum.photos/400/300?sig=3" class="img-3" alt="Forest">
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="lesson-title">Lesson 4: Call To Action Button</h2>
+            <div class="button-center">
+                <button class="cta-button">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="lesson-title">Lesson 5: Auto Photo Slider</h2>
+            <div class="slider-frame">
+                <div class="slider-content">
+                    <img src="https://picsum.photos/800/400?sig=4" alt="Slide 1">
+                    <img src="https://picsum.photos/800/400?sig=5" alt="Slide 2">
+                    <img src="https://picsum.photos/800/400?sig=6" alt="Slide 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

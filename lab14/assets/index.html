@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Bài Tập Web - My Portfolio</title>
+    <title>Hệ Thống Lab Web - Nguyễn Thành Long</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -35,9 +35,7 @@
             text-align: center;
         }
 
-        .header {
-            margin-bottom: 40px;
-        }
+        .header { margin-bottom: 40px; }
 
         .header h1 {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -45,12 +43,7 @@
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .header p {
-            color: var(--text-sub);
-            font-size: 1.1rem;
+            text-transform: uppercase; /* Tiêu đề viết hoa */
         }
 
         .nav-grid {
@@ -65,92 +58,79 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px 20px;
+            padding: 35px 20px;
             background: var(--card);
             text-decoration: none;
             color: var(--text-main);
-            border-radius: 20px;
-            font-weight: 600;
+            border-radius: 24px;
+            font-weight: 800; /* Làm chữ đậm hơn cho ngầu */
             border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            text-transform: uppercase; /* Ép toàn bộ link viết hoa */
         }
 
         .nav-item a i {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             color: var(--primary);
-            transition: var(--transition);
         }
 
         .nav-item a:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px);
             background: var(--primary);
             color: white;
-            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 25px 30px -10px rgba(79, 70, 229, 0.4);
         }
 
-        .nav-item a:hover i {
-            color: white;
-            transform: scale(1.1);
-        }
+        .nav-item a:hover i { color: white; transform: scale(1.15); }
 
-        footer {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: var(--text-sub);
-        }
-
-        @media (max-width: 600px) {
-            .nav-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+        footer { margin-top: 50px; color: var(--text-sub); font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="header">
-            <h1>Hệ Thống Lab Web</h1>
-            <p>Chọn một bài tập để xem chi tiết</p>
+            <h1>MY LEARNING LABS</h1>
+            <p>WEB DESIGN EXERCISE COLLECTION</p>
         </div>
 
         <ul class="nav-grid">
             <li class="nav-item">
-                <a href="lab1.html">
+                <a href="LAB1.html">
                     <i class="fas fa-flask"></i>
                     <span>LAB 01</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="lab2.html">
+                <a href="LAB2.html">
                     <i class="fas fa-code"></i>
                     <span>LAB 02</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="lab3.html">
+                <a href="LAB3.html">
                     <i class="fas fa-laptop-code"></i>
                     <span>LAB 03</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="lab4.html">
+                <a href="LAB4.html">
                     <i class="fas fa-layer-group"></i>
                     <span>LAB 04</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="ontap.html">
+                <a href="ONTAP.html">
                     <i class="fas fa-star"></i>
-                    <span>ÔN TẬP</span>
+                    <span>REVIEW</span>
                 </a>
             </li>
         </ul>
 
         <footer>
-            <p>© 2026 - Nguyễn Thành Long - Portfolio</p>
+            <p>© 2026 - NGUYEN THANH LONG - LAB PORTFOLIO</p>
         </footer>
     </div>
 
