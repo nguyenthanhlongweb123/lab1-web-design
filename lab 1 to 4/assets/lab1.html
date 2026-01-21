@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Tối ưu 1-5 - Nguyễn Thành Long</title>
+    <style>
+        /* --- CÀI ĐẶT CHUNG --- */
+        :root {
+            --primary: #3498db;
+            --secondary: #e67e22;
+            --bg-body: #f8f9fa;
+            --text-main: #2d3436;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        section {
+            background: #fff;
+            margin-bottom: 50px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* --- BÀI 1: BUTTONS (Đổi màu mượt 0.5s) --- */
+        .btn-group { display: flex; gap: 20px; justify-content: center; }
+        .btn {
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            /* Yêu cầu Lab: transition 0.5s */
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* --- BÀI 2: GALLERY (3 Ảnh - Phóng to nhẹ) --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .gallery figure {
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1/1;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery figure:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- BÀI 3: MENU (Underline chạy ngang) --- */
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            justify-content: center;
+        }
+        .nav li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav li a:hover::after {
+            width: 100%;
+        }
+
+        /* --- BÀI 4: CARDS (3 Thẻ - Nổi lên) --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .price { color: var(--secondary); font-weight: bold; }
+
+        /* --- BÀI 5: BANNER (Hiện dần 2s) --- */
+        .banner {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+        }
+        .hero-title {
+            color: #fff;
+            font-size: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <section id="bai1">
+            <h2>Bài 1: Nút bấm (Hover 0.5s)</h2>
+            <div class="btn-group">
+                <button class="btn">XÁC NHẬN</button>
+                <button class="btn">HỦY BỎ</button>
+                <button class="btn">CHI TIẾT</button>
+            </div>
+        </section>
+
+        <section id="bai2">
+            <h2>Bài 2: Gallery (Hover Scale 1.1)</h2>
+            <div class="gallery">
+                <figure><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400"></figure>
+                <figure><img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=400"></figure>
+                <figure><img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=400"></figure>
+            </div>
+        </section>
+
+        <section id="bai3">
+            <h2>Bài 3: Menu (Underline Animation)</h2>
+            <ul class="nav">
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Sản Phẩm</a></li>
+                <li><a href="#">Dịch Vụ</a></li>
+                <li><a href="#">Tin Tức</a></li>
+                <li><a href="#">Liên Hệ</a></li>
+            </ul>
+        </section>
+
+        <section id="bai4">
+            <h2>Bài 4: Card sản phẩm (Nổi khối)</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1585647347384-2593bc35786b?q=80&w=400" class="card-img">
+                    <div class="card-content">
+                        <h3>Combo Single</h3>
+                        <p class="price">89.000đ</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=400" class="card-img">
+                    <div class="card-content">
+                        <h3>Combo Double</h3>
+                        <p class="price">149.000đ</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400" class="card-img">
+                    <div class="card-content">
+                        <h3>Combo Family</h3>
+                        <p class="price">299.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bai5">
+            <h2>Bài 5: Banner (Fade-in 2s)</h2>
+            <div class="banner">
+                <h1 class="hero-title">CINEMA EXPERIENCE 2026</h1>
+            </div>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding-bottom: 40px; color: #999;">
+        © 2026 Nguyễn Thành Long - Lab 1 Optimized
+    </footer>
+
+</body>
+</html>

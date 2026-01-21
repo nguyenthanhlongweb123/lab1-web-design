@@ -1,327 +1,177 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FC Barcelona Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Bài Tập Web - My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-<style>
-:root{
-  --primary:#a50044;
-  --secondary:#004d98;
-  --gold:#edbb00;
-  --bg:#ffffff;
-  --text:#1a1a1a;
-  --card:#f5f5f5;
-  --price-color: #b0005d; /* Màu hồng tím theo ảnh mẫu */
-}
-body{
-  margin:0;
-  font-family:Segoe UI,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x: hidden;
-}
-body.dark{
-  --bg:#121212;
-  --text:#f1f1f1;
-  --card:#1f1f1f;
-}
-html{scroll-behavior:smooth}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* 5.2 CUSTOM CURSOR */
-.cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--primary);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  transition: transform 0.1s ease;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-/* 2.2 MARQUEE */
-.marquee-top{
-  background:var(--primary);
-  color:var(--gold);
-  padding:10px;
-  font-weight:bold;
-  overflow: hidden;
-}
+        .container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+        }
 
-/* 1. NAVIGATION BAR */
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 8%;
-  box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
-header img{height:60px}
+        .header {
+            margin-bottom: 40px;
+        }
 
-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  color:var(--secondary);
-  font-weight:bold;
-  position:relative;
-}
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--primary);
-  transition:.3s;
-}
-nav a:hover::after{width:100%}
-nav a.active{color:var(--primary)}
+        .header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
 
-/* 4. CTA BUTTONS */
-.btn-gold{
-  background:var(--gold);
-  border:none;
-  padding:10px 25px;
-  border-radius:20px;
-  font-weight:bold;
-  cursor:pointer;
-  transition: 0.3s;
-}
+        .header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+        }
 
-.pulse-btn {
-  animation: pulse 1.5s infinite;
-}
+        /* Grid Danh sách bài tập */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            list-style: none;
+        }
 
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-  100%{transform:scale(1)}
-}
+        .nav-item {
+            perspective: 1000px;
+        }
 
-/* 2.1 HERO BANNER */
-.hero{
-  height:350px;
-  background:linear-gradient(135deg,var(--secondary),var(--primary));
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
-.hero h1, .hero p {
-  opacity:0;
-  animation:fadeIn 1.5s forwards;
-}
-.hero p {animation-delay:.5s}
-@keyframes fadeIn{to{opacity:1; transform: translateY(0);}}
+        .nav-item a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            background: var(--card);
+            text-decoration: none;
+            color: var(--text-main);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
 
-section{padding:60px 10%}
-.section-title{
-  text-align:center;
-  font-size:2.2rem;
-  color:var(--primary);
-  margin-bottom:40px;
-}
+        .nav-item a i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
 
-/* 3.1 SCROLL REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(50px);
-  transition:.8s ease-out;
-}
-.reveal.show{
-  opacity:1;
-  transform:translateY(0);
-}
+        /* Hiệu ứng Hover */
+        .nav-item a:hover {
+            transform: translateY(-10px);
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
+        }
 
-/* 3. PRODUCT GRID */
-.info-grid,.product-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-}
+        .nav-item a:hover i {
+            color: white;
+            transform: scale(1.2);
+        }
 
-.product-card{
-  background:#fff;
-  border-radius:20px;
-  padding:20px;
-  text-align:center;
-  transition:.3s;
-}
+        /* Nổi bật Bài Tập Lớn */
+        .btl-special a {
+            grid-column: span 1;
+            border: 2px solid var(--primary);
+            background: linear-gradient(145deg, #ffffff, #f0f0ff);
+        }
 
-/* 3.2 HOVER CARD */
-.product-card:hover{
-  transform:translateY(-15px);
-  box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
 
-.product-card img{
-  width:100%;
-  border-radius:15px;
-  transition: 0.5s;
-}
-
-/* 3.3 GALLERY SCALE */
-.product-card:hover img {
-  transform: scale(1.05);
-}
-
-.price{
-  color:var(--price-color);
-  font-weight:bold;
-  display: block;
-  margin: 10px 0;
-  font-size: 1.1rem;
-}
-
-/* 5.1 DARK MODE & SYSTEM */
-.contact{
-  background:var(--secondary);
-  color:white;
-  padding:60px;
-  border-radius:30px;
-  text-align:center;
-  margin:40px 10%;
-}
-.contact input{
-  padding:12px;
-  width:280px;
-  border-radius:20px;
-  border:none;
-}
-
-footer{text-align:center; padding:30px; border-top: 1px solid #ddd;}
-</style>
+        @media (max-width: 600px) {
+            .nav-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="cursor"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Hệ Thống Lab Web</h1>
+            <p>Chọn một bài tập để xem chi tiết nội dung</p>
+        </div>
 
-<div class="marquee-top">
-  <marquee scrollamount="10">
-    FC BARCELONA – MÉS QUE UN CLUB – GIẢM GIÁ 20% TOÀN BỘ CỬA HÀNG
-  </marquee>
-</div>
+        <ul class="nav-grid">
+            <li class="nav-item">
+                <a href="lab1.html">
+                    <i class="fas fa-flask"></i>
+                    <span>Lab 01</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="lab2.html">
+                    <i class="fas fa-code"></i>
+                    <span>Lab 02</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="lab3.html">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Lab 03</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="lab4.html">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Lab 04</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="ontap.html">
+                    <i class="fas fa-football-ball"></i>
+                    <span>Ôn Tập</span>
+                </a>
+            </li>
+            <li class="nav-item btl-special">
+                <a href="baitaplon.html">
+                    <i class="fas fa-star"></i>
+                    <span>BÀI TẬP LỚN</span>
+                </a>
+            </li>
+        </ul>
 
-<header>
-  <img src="images/logo-barca.jpg" alt="Logo">
-  <nav>
-    <a href="#home" class="active">Trang chủ</a>
-    <a href="#about">Giới thiệu</a>
-    <a href="#news">Tin tức</a>
-    <a href="#shop">Cửa hàng</a>
-    <button id="toggleDark" class="btn-gold">🌙 Mode</button>
-  </nav>
-</header>
-
-<div id="home" class="hero">
-  <h1>BARCELONA STORE</h1>
-  <p>Més que un club – Hơn cả bóng đá</p>
-</div>
-
-<section id="about">
-  <h2 class="section-title">Giới Thiệu FC Barcelona</h2>
-  <div class="info-grid">
-    <div class="info-box reveal">
-      <h3>Lịch sử CLB</h3>
-      <p>FC Barcelona thành lập năm 1899, là biểu tượng văn hóa của xứ Catalonia.</p>
+        <footer>
+            <p>© 2026 - Portfolio Bài Tập Lớn - Gemini Studio</p>
+        </footer>
     </div>
-    <div class="info-box reveal">
-      <h3>Triết lý bóng đá</h3>
-      <p>Lối chơi Tiki-taka kiểm soát bóng, tấn công đẹp mắt.</p>
-    </div>
-    <div class="info-box reveal">
-      <h3>La Masia</h3>
-      <p>Học viện đào tạo Messi, Xavi, Iniesta.</p>
-    </div>
-  </div>
-</section>
-
-<section id="shop">
-  <h2 class="section-title">Sản Phẩm</h2>
-  <div class="product-grid">
-    <div class="product-card reveal">
-      <img src="images/anh1.jpg" alt="Nike Black">
-      <h3>Nike Running Black</h3>
-      <p class="price">1,850,000 VND</p>
-      <button class="btn-gold pulse-btn">Buy Now</button>
-    </div>
-    <div class="product-card reveal">
-      <img src="images/anh2.jpg" alt="Air Jordan">
-      <h3>Air Jordan Special</h3>
-      <p class="price">2,400,000 VND</p>
-      <button class="btn-gold pulse-btn">Buy Now</button>
-    </div>
-  </div>
-</section>
-
-<div class="contact reveal">
-  <h2>Tham Gia Cộng Đồng Culers</h2>
-  <input type="email" placeholder="Nhập email">
-  <br><br>
-  <button class="btn-gold">Đăng ký</button>
-</div>
-
-<footer>
-  © 2026 Nguyễn Thành Long - Bài Tập Lớn Giai Đoạn 1
-</footer>
-
-<script>
-/* 1.3 SCROLL SPY */
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach(sec => {
-    const sectionTop = sec.offsetTop;
-    if (pageYOffset >= sectionTop - 150) {
-      current = sec.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach(a => {
-    a.classList.remove("active");
-    if (a.getAttribute("href").includes(current)) {
-      a.classList.add("active");
-    }
-  });
-});
-
-/* 3.1 REVEAL ON SCROLL (getBoundingClientRect) */
-const revealOnScroll = () => {
-  document.querySelectorAll(".reveal").forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add("show");
-    }
-  });
-};
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
-/* 5.1 DARK MODE (classList.toggle) */
-document.getElementById("toggleDark").onclick = () => {
-  document.body.classList.toggle("dark");
-};
-
-/* 5.2 CUSTOM CURSOR */
-const cursor = document.querySelector(".cursor");
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-</script>
 
 </body>
 </html>
