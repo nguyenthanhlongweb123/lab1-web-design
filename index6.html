@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Chelsea FC - Trang chủ chính thức</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #020617 0%, #0a1a3a 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        /* Tối ưu chất lượng ảnh */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: bicubic;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            transition: all 0.3s ease;
+        }
+        
+        /* Làm nét ảnh hơn khi hover */
+        img:hover {
+            filter: brightness(1.05) contrast(1.05);
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        /* Header */
+        .hero-header {
+            background: linear-gradient(45deg, #0a1a3a, #1a2f4a);
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+        
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px #d4af37; }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px #d4af37; }
+        }
+        
+        .header-text h1 {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+        
+        .header-text p {
+            font-size: 12px;
+            color: #d4af37;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Cart Icon */
+        .cart-icon {
+            position: relative;
+            margin-left: auto;
+            font-size: 24px;
+            color: #d4af37;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0 25px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-item {
+            background: rgba(26, 47, 74, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid #d4af37;
+            padding: 8px 15px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+        
+        .nav-item:hover,
+        .nav-item.active {
+            background: #d4af37;
+            color: #0a1a3a;
+            transform: translateY(-3px);
+        }
+        
+        .nav-item i {
+            font-size: 14px;
+        }
+        
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 20px 0;
+            position: relative;
+            text-transform: uppercase;
+        }
+        
+        .section-title span {
+            background: linear-gradient(135deg, #fff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 10px;
+        }
+        
+        /* ===== TRANG CHỦ ===== */
+        .home-banner {
+            background: linear-gradient(145deg, #0a1a3a, #1a2f4a);
+            border-radius: 30px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/images/stadium-bg.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .home-banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .home-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            padding: 15px;
+            border: 3px solid #d4af37;
+        }
+        
+        .home-banner h1 {
+            font-size: 36px;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        .home-banner p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #ddd;
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .stat-box {
+            background: rgba(26,47,74,0.7);
+            border-radius: 20px;
+            padding: 20px 10px;
+            text-align: center;
+            border: 1px solid #d4af37;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            color: #d4af37;
+            font-weight: 900;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .info-item {
+            background: rgba(10,26,58,0.5);
+            border-radius: 20px;
+            padding: 15px;
+            border: 1px solid #d4af37;
+        }
+        
+        .info-item i {
+            color: #d4af37;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        /* Team Line-up */
+        .lineup-section {
+            background: rgba(26,47,74,0.7);
+            border-radius: 30px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 2px solid #d4af37;
+        }
+        
+        .lineup-title {
+            color: #d4af37;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .lineup-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .player-line {
+            background: rgba(10,26,58,0.5);
+            padding: 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 3px solid #d4af37;
+        }
+        
+        .player-number {
+            background: #d4af37;
+            color: #0a1a3a;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Partners */
+        .partners {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .partner-logo {
+            height: 40px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+        
+        /* Players Grid */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .player-card {
+            background: rgba(26, 47, 74, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        .player-number-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: #d4af37;
+            color: #0a1a3a;
+            font-size: 20px;
+            font-weight: 900;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            z-index: 2;
+        }
+        
+        .player-image {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .player-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+        
+        .player-card:hover .player-image img {
+            transform: scale(1.1);
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        .player-info {
+            padding: 15px;
+            text-align: center;
+            background: rgba(10, 26, 58, 0.8);
+        }
+        
+        .player-name {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        
+        .player-position {
+            color: #d4af37;
+            font-size: 13px;
+        }
+        
+        .legend-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #d4af37;
+            color: #0a1a3a;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        /* Timeline Lịch sử */
+        .history-section {
+            margin: 20px 0;
+        }
+        
+        .history-hero {
+            background: rgba(10, 26, 58, 0.7);
+            border-radius: 30px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #d4af37;
+            text-align: center;
+        }
+        
+        .history-hero h2 {
+            font-size: 24px;
+            color: #d4af37;
+        }
+        
+        .history-hero p {
+            font-size: 14px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 20px;
+        }
+        
+        .timeline-year {
+            width: 80px;
+            height: 80px;
+            background: #d4af37;
+            color: #0a1a3a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 auto 15px;
+        }
+        
+        .timeline-content {
+            background: rgba(26, 47, 74, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid #d4af37;
+        }
+        
+        .timeline-content h3 {
+            font-size: 20px;
+            color: #d4af37;
+        }
+        
+        .timeline-content p {
+            font-size: 14px;
+        }
+        
+        /* ===== SHOP SECTION ===== */
+        .shop-section {
+            margin: 20px 0;
+        }
+        
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .shop-product-card {
+            background: rgba(26, 47, 74, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .shop-product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            border-bottom: 2px solid #d4af37;
+            background: linear-gradient(145deg, #0a1a3a, #1a2f4a);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease, filter 0.3s ease;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
+        }
+        
+        .shop-product-card:hover .product-image img {
+            transform: scale(1.08);
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            font-size: 18px;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .product-colors {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .product-colors span {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 2px solid #d4af37;
+        }
+        
+        .product-size {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .size-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .size-option:hover,
+        .size-option.selected {
+            background: #d4af37;
+            color: #0a1a3a;
+            transform: scale(1.1);
+        }
+        
+        .shop-add-btn {
+            background: #d4af37;
+            color: #0a1a3a;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+        
+        .shop-add-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px #d4af37;
+        }
+        
+        /* Comments Section */
+        .comments-section {
+            background: rgba(26, 47, 74, 0.5);
+            border-radius: 30px;
+            padding: 20px;
+            border: 2px solid #d4af37;
+        }
+        
+        .comment-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .comment-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 30px;
+            border: 1px solid #d4af37;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 14px;
+        }
+        
+        .comment-form button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #d4af37;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .comment-item {
+            background: rgba(10, 26, 58, 0.7);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .comment-author {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .comment-text {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* ===== LIÊN HỆ SECTION ===== */
+        .contact-section {
+            background: rgba(26, 47, 74, 0.5);
+            border-radius: 30px;
+            padding: 25px;
+            border: 2px solid #d4af37;
+            margin: 20px 0;
+        }
+        
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info-card {
+            background: rgba(10, 26, 58, 0.7);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #d4af37;
+            text-align: center;
+        }
+        
+        .contact-info-card i {
+            font-size: 30px;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info-card h3 {
+            color: #d4af37;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info-card p {
+            font-size: 14px;
+            color: #ddd;
+        }
+        
+        /* Form liên hệ riêng */
+        .contact-form-container {
+            background: linear-gradient(145deg, #0a1a3a, #1a2f4a);
+            border-radius: 25px;
+            padding: 30px;
+            border: 2px solid #d4af37;
+            margin: 20px 0;
+        }
+        
+        .contact-form-title {
+            color: #d4af37;
+            font-size: 24px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .contact-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-form-group {
+            margin-bottom: 15px;
+        }
+        
+        .contact-form-group label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .contact-form-group input,
+        .contact-form-group textarea,
+        .contact-form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 15px;
+            border: 1px solid #d4af37;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 14px;
+        }
+        
+        .contact-form-group input:focus,
+        .contact-form-group textarea:focus,
+        .contact-form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(212,175,55,0.5);
+        }
+        
+        .contact-form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-form-group.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-form-group.checkbox input {
+            width: auto;
+            margin-right: 5px;
+        }
+        
+        .contact-form-group.checkbox label {
+            margin-bottom: 0;
+            font-weight: normal;
+            color: #ddd;
+        }
+        
+        .form-required {
+            color: #ff6b6b;
+            margin-left: 3px;
+        }
+        
+        .contact-submit-btn {
+            background: #d4af37;
+            color: #0a1a3a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .contact-submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.5);
+        }
+        
+        .contact-submit-btn i {
+            font-size: 20px;
+        }
+        
+        /* Bản đồ */
+        .map-container {
+            margin: 25px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+            height: 250px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* Mạng xã hội */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 20px;
+        }
+        
+        .social-link:hover {
+            background: #d4af37;
+            color: #0a1a3a;
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 2px solid #d4af37;
+            margin-top: 30px;
+        }
+        
+        .footer p {
+            font-size: 14px;
+        }
+        
+        /* Responsive cho mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .hero-header {
+                padding: 15px;
+            }
+            
+            .header-logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .header-text h1 {
+                font-size: 22px;
+            }
+            
+            .header-text p {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+            
+            .nav-bar {
+                gap: 5px;
+            }
+            
+            .nav-item {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+            
+            .nav-item i {
+                font-size: 12px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+                margin: 15px 0;
+            }
+            
+            .players-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .player-image {
+                height: 150px;
+            }
+            
+            .player-name {
+                font-size: 14px;
+            }
+            
+            .player-position {
+                font-size: 11px;
+            }
+            
+            .quick-stats {
+                gap: 8px;
+            }
+            
+            .stat-number {
+                font-size: 24px;
+            }
+            
+            .stat-label {
+                font-size: 11px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lineup-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-banner h1 {
+                font-size: 24px;
+            }
+            
+            .home-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .partners {
+                gap: 10px;
+            }
+            
+            .partner-logo {
+                height: 30px;
+                padding: 5px 10px;
+            }
+            
+            .timeline-year {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+            
+            .timeline-content h3 {
+                font-size: 18px;
+            }
+            
+            .shop-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image {
+                height: 180px;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 200px;
+            }
+            
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .cart-icon {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .contact-form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header với giỏ hàng -->
+        <div class="hero-header">
+            <div class="header-content">
+                <img src="assets/images/logo.png" alt="Chelsea FC" class="header-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/vi/thumb/3/3a/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png'">
+                <div class="header-text">
+                    <h1>Chelsea FC</h1>
+                    <p>THE BLUES • PRIDE OF LONDON</p>
+                </div>
+                <div class="cart-icon" onclick="showPaymentModal()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="nav-bar">
+            <div class="nav-item active" onclick="showSection('home')">
+                <i class="fas fa-home"></i> TRANG CHỦ
+            </div>
+            <div class="nav-item" onclick="showSection('players')">
+                <i class="fas fa-users"></i> CẦU THỦ
+            </div>
+            <div class="nav-item" onclick="showSection('history')">
+                <i class="fas fa-history"></i> LỊCH SỬ
+            </div>
+            <div class="nav-item" onclick="showSection('shop')">
+                <i class="fas fa-store"></i> SHOP
+            </div>
+            <div class="nav-item" onclick="showSection('contact')">
+                <i class="fas fa-envelope"></i> LIÊN HỆ
+            </div>
+            <div class="nav-item" onclick="showSection('comments')">
+                <i class="fas fa-comments"></i> BÌNH LUẬN
+            </div>
+        </div>
+        
+        <!-- Section TRANG CHỦ -->
+        <div id="home" class="section active">
+            <!-- Banner chính -->
+            <div class="home-banner">
+                <div class="home-banner-content">
+                    <img src="assets/images/logo.png" alt="Chelsea FC" class="home-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/vi/thumb/3/3a/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png'">
+                    <h1>THE BLUES</h1>
+                    <p>Câu lạc bộ bóng đá Chelsea - Niềm tự hào của thành London. Cùng nhau, chúng ta làm nên lịch sử!</p>
+                </div>
+            </div>
+            
+            <!-- Ảnh HLV Chelsea -->
+            <div style="margin: 20px 0; text-align: center;">
+                <img src="assets/images/hlvchelsea.png" alt="HLV Chelsea" style="max-width: 100%; height: auto; border-radius: 20px; border: 2px solid #d4af37;" onerror="this.src='https://via.placeholder.com/400x200/0a1a3a/d4af37?text=HLV+Chelsea'">
+                <p style="margin-top: 10px; color: #d4af37;">HLV Enzo Maresca và các học trò</p>
+            </div>
+            
+            <!-- Thống kê nhanh -->
+            <div class="quick-stats">
+                <div class="stat-box">
+                    <div class="stat-number">33</div>
+                    <div class="stat-label">DANH HIỆU</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">PREMIER LEAGUE</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">C1</div>
+                </div>
+            </div>
+            
+            <!-- Thông tin CLB -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i> <strong>Thành lập:</strong> 1905
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i> <strong>Sân nhà:</strong> Stamford Bridge
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-users"></i> <strong>Sức chứa:</strong> 41.631
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-trophy"></i> <strong>Chủ tịch:</strong> Todd Boehly
+                </div>
+            </div>
+            
+            <!-- Đội hình dự kiến -->
+            <div class="lineup-section">
+                <div class="lineup-title">
+                    <i class="fas fa-futbol"></i> ĐỘI HÌNH DỰ KIẾN 2026
+                </div>
+                
+                <div class="lineup-grid">
+                    <div class="player-line">
+                        <span class="player-number">1</span>
+                        <span>JACK RIDDLE</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">2</span>
+                        <span>NICK FISHER</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">3</span>
+                        <span>SAM ROBINSON</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">4</span>
+                        <span>LAUREN LEWIS</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">5</span>
+                        <span>ALEXANDRA BAKER</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">6</span>
+                        <span>CHRIS GILBERT</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">7</span>
+                        <span>KATIE HALL</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">8</span>
+                        <span>MARY KELLY</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">9</span>
+                        <span>JESSICA JONES</span>
+                    </div>
+                    <div class="player-line">
+                        <span class="player-number">10</span>
+                        <span>AMANDA WALKER</span>
+                    </div>
+                </div>
+                
+                <!-- Ảnh áo đấu -->
+                <div style="margin-top: 20px; text-align: center;">
+                    <img src="assets/images/awaykit.png" alt="Áo đấu Chelsea 2025/26" style="max-width: 100%; height: auto; border-radius: 15px; border: 2px solid #d4af37;" onerror="this.src='https://via.placeholder.com/300x300/0a1a3a/d4af37?text=Away+Kit'">
+                    <p style="margin-top: 10px;">Áo đấu sân khách 2025/26</p>
+                </div>
+            </div>
+            
+            <!-- Đối tác -->
+            <div class="partners">
+                <img src="assets/images/nike.png" alt="Nike" class="partner-logo" onerror="this.src='https://via.placeholder.com/100x40/ffffff/0a1a3a?text=Nike'">
+                <img src="assets/images/emirates.png" alt="Emirates" class="partner-logo" onerror="this.src='https://via.placeholder.com/100x40/ffffff/0a1a3a?text=Emirates'">
+            </div>
+        </div>
+        
+        <!-- Section CẦU THỦ -->
+        <div id="players" class="section" style="display: none;">
+            <div class="section-title">
+                <span>CẦU THỦ NỔI BẬT 2026</span>
+            </div>
+            <div class="players-grid">
+                <!-- John Terry -->
+                <div class="player-card">
+                    <div class="legend-badge">HUYỀN THOẠI</div>
+                    <div class="player-number-badge">26</div>
+                    <div class="player-image">
+                        <img src="assets/images/anh1.png" alt="John Terry" onerror="this.src='https://via.placeholder.com/200x200/0a1a3a/d4af37?text=JT'">
+                    </div>
+                    <div class="player-info">
+                        <div class="player-name">JOHN TERRY</div>
+                        <div class="player-position">TRUNG VỆ</div>
+                    </div>
+                </div>
+                
+                <!-- Didier Drogba -->
+                <div class="player-card">
+                    <div class="legend-badge">HUYỀN THOẠI</div>
+                    <div class="player-number-badge">11</div>
+                    <div class="player-image">
+                        <img src="assets/images/anh2.png" alt="Didier Drogba" onerror="this.src='https://via.placeholder.com/200x200/0a1a3a/d4af37?text=DD'">
+                    </div>
+                    <div class="player-info">
+                        <div class="player-name">DIDIER DROGBA</div>
+                        <div class="player-position">TIỀN ĐẠO</div>
+                    </div>
+                </div>
+                
+                <!-- Moises Caicedo -->
+                <div class="player-card">
+                    <div class="legend-badge" style="background: #0a1a3a; color: #d4af37;">NGÔI SAO</div>
+                    <div class="player-number-badge">25</div>
+                    <div class="player-image">
+                        <img src="assets/images/anh3.png" alt="Moises Caicedo" onerror="this.src='https://via.placeholder.com/200x200/0a1a3a/d4af37?text=MC'">
+                    </div>
+                    <div class="player-info">
+                        <div class="player-name">MOISES CAICEDO</div>
+                        <div class="player-position">TIỀN VỆ</div>
+                    </div>
+                </div>
+                
+                <!-- Enzo Fernandez -->
+                <div class="player-card">
+                    <div class="legend-badge" style="background: #0a1a3a; color: #d4af37;">NGÔI SAO</div>
+                    <div class="player-number-badge">8</div>
+                    <div class="player-image">
+                        <img src="assets/images/anh4.png" alt="Enzo Fernandez" onerror="this.src='https://via.placeholder.com/200x200/0a1a3a/d4af37?text=EF'">
+                    </div>
+                    <div class="player-info">
+                        <div class="player-name">ENZO FERNANDEZ</div>
+                        <div class="player-position">TIỀN VỆ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section LỊCH SỬ -->
+        <div id="history" class="section" style="display: none;">
+            <div class="section-title">
+                <span>LỊCH SỬ HUY HOÀNG</span>
+            </div>
+            
+            <div class="history-section">
+                <div class="history-hero">
+                    <h2>1905 - 2026: HƠN 120 NĂM</h2>
+                    <p>Thành lập ngày 10/3/1905 tại Fulham, London</p>
+                </div>
+                
+                <!-- Timeline đơn giản hóa cho mobile -->
+                <div class="timeline-item">
+                    <div class="timeline-year">1905</div>
+                    <div class="timeline-content">
+                        <h3>Thành lập CLB</h3>
+                        <p>Stamford Bridge trở thành ngôi nhà của The Blues</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-content">
+                        <h3>Vô địch C1 lần đầu</h3>
+                        <p>Drogba ghi bàn quyết định trước Bayern</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2021</div>
+                    <div class="timeline-content">
+                        <h3>Vô địch C1 lần 2</h3>
+                        <p>Havertz đưa Chelsea lên đỉnh châu Âu</p>
+                    </div>
+                </div>
+                
+                <!-- Thống kê -->
+                <div class="quick-stats" style="margin-top: 30px;">
+                    <div class="stat-box">
+                        <div class="stat-number">33</div>
+                        <div class="stat-label">DANH HIỆU</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">PL</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">C1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section SHOP (3 SẢN PHẨM, ẢNH ĐÃ TỐI ƯU NÉT) -->
+        <div id="shop" class="section" style="display: none;">
+            <div class="section-title">
+                <span>SHOP CHÍNH THỨC</span>
+            </div>
+            
+            <div class="shop-section">
+                <!-- Banner Shop -->
+                <div style="background: linear-gradient(145deg, #d4af37, #0a1a3a); border-radius: 25px; padding: 20px; margin-bottom: 25px; text-align: center; border: 2px solid #d4af37;">
+                    <h2 style="color: white; font-size: 24px;">⚡ MUA SẮM NGAY HÔM NAY ⚡</h2>
+                    <p style="color: #ddd;">Áo đấu chính thức 2025/26 đã có mặt!</p>
+                </div>
+                
+                <!-- Grid sản phẩm với 3 ảnh thật -->
+                <div class="shop-grid">
+                    <!-- Sản phẩm 1: Áo sân nhà -->
+                    <div class="shop-product-card">
+                        <div class="product-badge">MỚI</div>
+                        <div class="product-image">
+                            <img src="assets/images/homekitchelsea.png" alt="Áo sân nhà Chelsea" onerror="this.src='https://via.placeholder.com/300x300/0a1a3a/d4af37?text=Home+Kit'">
+                            <div style="position: absolute; background: #d4af37; color: #0a1a3a; padding: 5px 15px; border-radius: 20px; font-weight: bold; top: 20px; left: 20px;">HOME</div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Áo sân nhà 2025/26</h3>
+                            <div class="product-price">1.299.000đ</div>
+                            <div class="product-colors">
+                                <span style="background: #034694;" title="Xanh Chelsea"></span>
+                                <span style="background: white; border: 1px solid #d4af37;" title="Trắng"></span>
+                                <span style="background: #d4af37;" title="Vàng"></span>
+                            </div>
+                            <div class="product-size">
+                                <span class="size-option" onclick="selectSize(this)">S</span>
+                                <span class="size-option" onclick="selectSize(this)">M</span>
+                                <span class="size-option" onclick="selectSize(this)">L</span>
+                                <span class="size-option" onclick="selectSize(this)">XL</span>
+                                <span class="size-option" onclick="selectSize(this)">XXL</span>
+                            </div>
+                            <button class="shop-add-btn" onclick="addToCart('Áo sân nhà 2025/26', 1299000)">
+                                <i class="fas fa-cart-plus"></i> THÊM VÀO GIỎ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sản phẩm 2: Áo sân khách -->
+                    <div class="shop-product-card">
+                        <div class="product-badge" style="background: #d4af37; color: #0a1a3a;">BÁN CHẠY</div>
+                        <div class="product-image">
+                            <img src="assets/images/awaykit.png" alt="Áo sân khách Chelsea" onerror="this.src='https://via.placeholder.com/300x300/0a1a3a/d4af37?text=Away+Kit'">
+                            <div style="position: absolute; background: #d4af37; color: #0a1a3a; padding: 5px 15px; border-radius: 20px; font-weight: bold; top: 20px; left: 20px;">AWAY</div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Áo sân khách 2025/26</h3>
+                            <div class="product-price">1.199.000đ</div>
+                            <div class="product-colors">
+                                <span style="background: #2a2a2a;"></span>
+                                <span style="background: #d4af37;"></span>
+                                <span style="background: white; border: 1px solid #d4af37;"></span>
+                            </div>
+                            <div class="product-size">
+                                <span class="size-option" onclick="selectSize(this)">S</span>
+                                <span class="size-option" onclick="selectSize(this)">M</span>
+                                <span class="size-option" onclick="selectSize(this)">L</span>
+                                <span class="size-option" onclick="selectSize(this)">XL</span>
+                                <span class="size-option" onclick="selectSize(this)">XXL</span>
+                            </div>
+                            <button class="shop-add-btn" onclick="addToCart('Áo sân khách 2025/26', 1199000)">
+                                <i class="fas fa-cart-plus"></i> THÊM VÀO GIỎ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sản phẩm 3: Áo khoác -->
+                    <div class="shop-product-card">
+                        <div class="product-image">
+                            <img src="assets/images/jacket.png" alt="Áo khoác Chelsea" onerror="this.src='https://via.placeholder.com/300x300/0a1a3a/d4af37?text=Jacket'">
+                            <div style="position: absolute; background: #d4af37; color: #0a1a3a; padding: 5px 15px; border-radius: 20px; font-weight: bold; top: 20px; left: 20px;">JACKET</div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Áo khoác Chelsea</h3>
+                            <div class="product-price">1.599.000đ</div>
+                            <div class="product-colors">
+                                <span style="background: #0a1a3a;"></span>
+                                <span style="background: #000000;"></span>
+                                <span style="background: #d4af37;"></span>
+                            </div>
+                            <div class="product-size">
+                                <span class="size-option" onclick="selectSize(this)">S</span>
+                                <span class="size-option" onclick="selectSize(this)">M</span>
+                                <span class="size-option" onclick="selectSize(this)">L</span>
+                                <span class="size-option" onclick="selectSize(this)">XL</span>
+                                <span class="size-option" onclick="selectSize(this)">XXL</span>
+                            </div>
+                            <button class="shop-add-btn" onclick="addToCart('Áo khoác Chelsea', 1599000)">
+                                <i class="fas fa-cart-plus"></i> THÊM VÀO GIỎ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thông tin thêm -->
+                <div style="margin-top: 30px; padding: 20px; background: rgba(10,26,58,0.5); border-radius: 20px; text-align: center;">
+                    <p><i class="fas fa-truck" style="color: #d4af37;"></i> Miễn phí vận chuyển cho đơn hàng trên 2.000.000đ</p>
+                    <p><i class="fas fa-undo" style="color: #d4af37;"></i> Đổi trả trong 30 ngày</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section LIÊN HỆ -->
+        <div id="contact" class="section" style="display: none;">
+            <div class="section-title">
+                <span>LIÊN HỆ VỚI CHÚNG TÔI</span>
+            </div>
+            
+            <div class="contact-section">
+                <!-- Thông tin liên hệ -->
+                <div class="contact-info-grid">
+                    <div class="contact-info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>ĐỊA CHỈ</h3>
+                        <p>Stamford Bridge, Fulham Road<br>London, SW6 1HS<br>Vương quốc Anh</p>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>ĐIỆN THOẠI</h3>
+                        <p>+44 207 386 9373</p>
+                        <p style="font-size: 12px;">(Văn phòng CLB)</p>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>EMAIL</h3>
+                        <p>info@chelseafc.com</p>
+                        <p>fanclub@chelseafc.vn</p>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>GIỜ LÀM VIỆC</h3>
+                        <p>Thứ 2 - Thứ 6: 9:00 - 18:00</p>
+                        <p>Thứ 7: 9:00 - 13:00</p>
+                    </div>
+                </div>
+                
+                <!-- FORM LIÊN HỆ RIÊNG VỚI NÚT XÁC NHẬN -->
+                <div class="contact-form-container">
+                    <div class="contact-form-title">
+                        <i class="fas fa-paper-plane"></i> GỬI TIN NHẮN CHO CHÚNG TÔI
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="contact-form-row">
+                            <div class="contact-form-group">
+                                <label>Họ và tên <span class="form-required">*</span></label>
+                                <input type="text" id="contactName" placeholder="Nhập họ tên của bạn" required>
+                            </div>
+                            
+                            <div class="contact-form-group">
+                                <label>Email <span class="form-required">*</span></label>
+                                <input type="email" id="contactEmail" placeholder="Nhập địa chỉ email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form-row">
+                            <div class="contact-form-group">
+                                <label>Số điện thoại</label>
+                                <input type="tel" id="contactPhone" placeholder="Nhập số điện thoại">
+                            </div>
+                            
+                            <div class="contact-form-group">
+                                <label>Tiêu đề <span class="form-required">*</span></label>
+                                <select id="contactSubject" required>
+                                    <option value="" disabled selected>-- Chọn tiêu đề --</option>
+                                    <option value="general">Góp ý chung</option>
+                                    <option value="support">Hỗ trợ kỹ thuật</option>
+                                    <option value="fanclub">Tham gia fan club</option>
+                                    <option value="business">Hợp tác thương mại</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form-group">
+                            <label>Nội dung tin nhắn <span class="form-required">*</span></label>
+                            <textarea id="contactMessage" placeholder="Nhập nội dung tin nhắn của bạn..." required></textarea>
+                        </div>
+                        
+                        <div class="contact-form-group checkbox">
+                            <input type="checkbox" id="contactCopy" value="copy">
+                            <label for="contactCopy">Gửi bản sao tin nhắn vào email của tôi</label>
+                        </div>
+                        
+                        <div class="contact-form-group checkbox">
+                            <input type="checkbox" id="contactAgree" required>
+                            <label for="contactAgree">Tôi đồng ý với <a href="#" style="color: #d4af37;">chính sách bảo mật</a> của Chelsea FC <span class="form-required">*</span></label>
+                        </div>
+                        
+                        <button type="button" class="contact-submit-btn" onclick="sendContact()">
+                            <i class="fas fa-check-circle"></i> XÁC NHẬN GỬI TIN NHẮN
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Bản đồ Stamford Bridge -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.042427696132!2d-0.19312468422943!3d51.481472979631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760f9c2a3c2b2b%3A0x3b0f8f8f8f8f8f8f!2sStamford%20Bridge!5e0!3m2!1svi!2s!4v1620000000000!5m2!1svi!2s" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                
+                <!-- Mạng xã hội -->
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section BÌNH LUẬN -->
+        <div id="comments" class="section" style="display: none;">
+            <div class="section-title">
+                <span>CỘNG ĐỒNG FANS</span>
+            </div>
+            <div class="comments-section">
+                <div class="comment-form">
+                    <input type="text" id="commentInput" placeholder="Bình luận của bạn...">
+                    <button onclick="addComment()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="comment-list" id="commentList">
+                    <div class="comment-item">
+                        <div class="comment-author">🏆 BlueArmy</div>
+                        <div class="comment-text">Chelsea vô địch!</div>
+                    </div>
+                    <div class="comment-item">
+                        <div class="comment-author">⚡ PalmerFan</div>
+                        <div class="comment-text">Nhớ quá kỷ niệm 2012</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div id="paymentModal" class="modal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+            <div style="background: #0a1a3a; border: 2px solid #d4af37; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%;">
+                <h2 style="color: #d4af37; margin-bottom: 20px;">Chọn thanh toán</h2>
+                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; margin-bottom: 10px;" onclick="processPayment('cash')">
+                    <i class="fas fa-money-bill" style="color: #d4af37;"></i> Tiền mặt
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; margin-bottom: 10px;" onclick="processPayment('card')">
+                    <i class="fas fa-credit-card" style="color: #d4af37;"></i> Thẻ
+                </div>
+                <button style="margin-top: 20px; background: #d4af37; color: #0a1a3a; border: none; padding: 15px; border-radius: 30px; width: 100%;" onclick="closePaymentModal()">Đóng</button>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p style="color: #d4af37;">KEEP THE BLUE FLAG FLYING HIGH</p>
+            <p style="font-size: 12px;">© 2026 Chelsea FC Vietnam</p>
+        </div>
+    </div>
+    
+    <script>
+        let cart = [];
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+        
+        function showPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+        
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        
+        function processPayment(method) {
+            alert('Cảm ơn bạn đã mua hàng!');
+            closePaymentModal();
+        }
+        
+        function addComment() {
+            let input = document.getElementById('commentInput');
+            let text = input.value.trim();
+            if (!text) return;
+            
+            let commentList = document.getElementById('commentList');
+            commentList.innerHTML = `
+                <div class="comment-item">
+                    <div class="comment-author">👤 Fan mới</div>
+                    <div class="comment-text">${text}</div>
+                </div>
+            ` + commentList.innerHTML;
+            
+            input.value = '';
+        }
+        
+        // Hàm chọn size
+        function selectSize(element) {
+            let parent = element.parentElement;
+            let siblings = parent.querySelectorAll('.size-option');
+            siblings.forEach(sib => {
+                sib.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        // Hàm thêm vào giỏ hàng
+        function addToCart(productName, price) {
+            let cartCount = document.getElementById('cartCount');
+            cart.push({name: productName, price: price});
+            cartCount.textContent = cart.length;
+            alert('✅ Đã thêm ' + productName + ' vào giỏ hàng!');
+        }
+        
+        // Hàm gửi liên hệ với nút xác nhận
+        function sendContact() {
+            let name = document.getElementById('contactName').value.trim();
+            let email = document.getElementById('contactEmail').value.trim();
+            let subject = document.getElementById('contactSubject').value;
+            let message = document.getElementById('contactMessage').value.trim();
+            let agree = document.getElementById('contactAgree').checked;
+            
+            // Kiểm tra các trường bắt buộc
+            if (name === '') {
+                alert('Vui lòng nhập họ tên!');
+                return;
+            }
+            
+            if (email === '') {
+                alert('Vui lòng nhập email!');
+                return;
+            }
+            
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Vui lòng nhập email hợp lệ!');
+                return;
+            }
+            
+            if (!subject) {
+                alert('Vui lòng chọn tiêu đề!');
+                return;
+            }
+            
+            if (message === '') {
+                alert('Vui lòng nhập nội dung tin nhắn!');
+                return;
+            }
+            
+            if (!agree) {
+                alert('Vui lòng đồng ý với chính sách bảo mật!');
+                return;
+            }
+            
+            // Hiển thị thông báo xác nhận
+            let copyMsg = document.getElementById('contactCopy').checked ? ' (bản sao đã gửi vào email của bạn)' : '';
+            
+            alert('✅ XÁC NHẬN GỬI THÀNH CÔNG!\n\n' +
+                  'Cảm ơn ' + name + ' đã liên hệ với Chelsea FC.\n' +
+                  'Chúng tôi sẽ phản hồi qua email: ' + email + ' trong thời gian sớm nhất.' + copyMsg);
+            
+            // Reset form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactPhone').value = '';
+            document.getElementById('contactSubject').value = '';
+            document.getElementById('contactMessage').value = '';
+            document.getElementById('contactCopy').checked = false;
+            document.getElementById('contactAgree').checked = false;
+        }
+    </script>
+</body>
+</html>
